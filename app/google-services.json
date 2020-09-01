@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "76370186946",
+    "firebase_url": "https://gtrr-app.firebaseio.com",
+    "project_id": "gtrr-app",
+    "storage_bucket": "gtrr-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76370186946:android:501ece1608a36ba893615b",
+        "android_client_info": {
+          "package_name": "com.example.gtrrapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76370186946-vn7mv4jtcgrj8tf1drbbrdon7dqahvkc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gtrrapp",
+            "certificate_hash": "b8e7710e5b11f10f132b8a438ee936dc86881760"
+          }
+        },
+        {
+          "client_id": "76370186946-lbm2oqolulbaurd17rbg1sa0ng4ijqfv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAl7YwqkMfEgXL7GCHLk_5hP8lSCRrqyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76370186946-lbm2oqolulbaurd17rbg1sa0ng4ijqfv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
