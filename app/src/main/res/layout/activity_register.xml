@@ -29,11 +29,22 @@
             android:text="SELECT PHOTO" />
 
         <EditText
+            android:hint="Enter your User Name"
+            android:id="@+id/gtrr_UserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/select_photobtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <EditText
             android:hint="Enter your Email address"
             android:id="@+id/gtrrEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/select_photobtn"
+            android:layout_below="@+id/gtrr_UserName"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="36dp"
             android:ems="10"

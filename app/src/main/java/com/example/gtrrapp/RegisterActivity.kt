@@ -1,13 +1,21 @@
 package com.example.gtrrapp
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_register.registerbtn
 import kotlinx.android.synthetic.main.activity_register.*
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -15,14 +23,20 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        //ACTION FOR THE SELECT PHOTO BUTTON
+        select_photobtn.setOnClickListener {
+            Log.d("RegisterActivity","Show photo selector")
+
+            //REDIRECT USER TO SELECT PICTURE FROM THE DOWNLOAD FOLDER
+            val intent= Intent(Intent.ACTION_PICK)
+            intent.type="image/*"
+            startActivityForResult(intent, 0)
+        }
+
         //ACTION FOR THE REGISTER BUTTON
         registerbtn.setOnClickListener {
             val email = gtrrEmail.text.toString()
             val pass = gtrrPassword.text.toString()
-
-            select_photobtn.setOnClickListener {
-                Log.d("RegisterActivity","Show photo selector")
-            }
 
             //IF EMAIL OR PASSWORD COLUMN IS LEFT BLANK SHOW TOAST
             if (email.isEmpty() || pass.isEmpty()) {
@@ -42,13 +56,75 @@ class RegisterActivity : AppCompatActivity() {
 
                     //ELSE IF SUCCESSFUL
                     Log.d("RegisterActivity", "Successfully created user with uid: ${it?.result?.user?.uid}")
+                    Toast.makeText(this, "Successfully Registered a New User Account", Toast.LENGTH_SHORT).show()
+
+                    //STORE SELECTED IMAGE TO FIREBASE
+                    uploadImageToFirebaseStrorage()
                 }
+
                 .addOnFailureListener {
                     //DISPLAY ACTION IN LOGCAT
                     Log.d("RegisterActivity", "Failed to create user: ${it.message}")
                     Toast.makeText(this, "Failed to create user ${it.message}", Toast.LENGTH_SHORT).show()
                 }
+        }
+    }
 
+    private fun uploadImageToFirebaseStrorage(){
+        if (selectedPhotoUri == null) return
+
+        val filename = UUID.randomUUID().toString()
+        val ref=FirebaseStorage.getInstance().getReference("/images/$filename")
+
+        ref.putFile(selectedPhotoUri!!)
+            .addOnSuccessListener{
+                Log.d("RegisterActivity", "Successfully uploaded image")
+
+                ref.downloadUrl.addOnSuccessListener {
+                    it.toString()
+                    Log.d("RegisterActivity", "File Location: $it")
+
+                    saveUserToFriebaseDatabase(it.toString())
+                }
+            }
+            .addOnFailureListener{
+                Log.d("RegisterActivity","Fail to upload image")
+            }
+    }
+
+    private fun saveUserToFriebaseDatabase(profileImageUrl: String){
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val user=User(uid, gtrr_UserName.text.toString(), profileImageUrl)
+        ref.setValue(user)
+            .addOnSuccessListener {
+                Log.d("RegisterActivity", "Saved user Data to Firebase")
+            }
+            .addOnFailureListener{
+                Log.d("RegisterActivity","Fail to upload user data")
+            }
+    }
+
+
+    var selectedPhotoUri: Uri? = null
+
+    //DISPLAYING THE SELECTED PHOTO
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data !=null){
+
+            //PROCEED TO CHECK WHAT THE SELECTED IMAGE WAS
+            Log.d("RegisterActivity", "Photo was selected")
+
+            selectedPhotoUri = data.data
+
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,selectedPhotoUri)
+
+            val bitmapDrawable = BitmapDrawable(bitmap)
+            select_photobtn.setBackgroundDrawable(bitmapDrawable)
         }
     }
 }
+
+class User(val uid:String, val username:String, val profileImageUrl: String)
