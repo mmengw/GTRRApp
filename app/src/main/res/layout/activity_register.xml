@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="Register Account"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/select_photobtn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="SELECT PHOTO" />
+
+        <EditText
+            android:hint="Enter your Email address"
+            android:id="@+id/gtrrEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/select_photobtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:hint="Enter your Password"
+            android:id="@+id/gtrrPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/gtrrEmail"
+            android:layout_alignRight="@+id/gtrrEmail"
+            android:layout_below="@+id/gtrrEmail"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/registerbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gtrrPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31dp"
+            android:text="REGISTER"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
