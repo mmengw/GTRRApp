@@ -52,6 +52,8 @@ class RegisterActivity : AppCompatActivity() {
 
                 .addOnCompleteListener {
                     //IF NOT SUCCESSFUL
+                    if(!it.isSuccessful)
+                        Toast.makeText(this, "Failed to Login Please try Again", Toast.LENGTH_SHORT).show()
                     if (!it.isSuccessful) return@addOnCompleteListener
 
                     //ELSE IF SUCCESSFUL
@@ -70,6 +72,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    //FUNCTION FOR UPLOAD IMAGE TO FIREBASE STORAGE
     private fun uploadImageToFirebaseStrorage(){
         if (selectedPhotoUri == null) return
 
@@ -92,6 +95,7 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
+    //STORE USER INFORMATION TO FIREBASE DATABASE
     private fun saveUserToFriebaseDatabase(profileImageUrl: String){
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
@@ -99,12 +103,16 @@ class RegisterActivity : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "Saved user Data to Firebase")
+                val intent = Intent(this, HomeActivity::class.java)
+                //CLEAR OFF ALL THE PREVIOUS ACTIVITY STACK SO THAT IT WONT BRING THE USER BACK TO THE REGISTER SCREEN
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+
             }
             .addOnFailureListener{
                 Log.d("RegisterActivity","Fail to upload user data")
             }
     }
-
 
     var selectedPhotoUri: Uri? = null
 
@@ -127,4 +135,5 @@ class RegisterActivity : AppCompatActivity() {
     }
 }
 
+//CREATING A USER CLASS TO IDENTIFY WHAT TO STORE IN THE DATABASE
 class User(val uid:String, val username:String, val profileImageUrl: String)

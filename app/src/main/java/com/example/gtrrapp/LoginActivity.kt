@@ -26,12 +26,15 @@ class LoginActivity: AppCompatActivity(){
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email,pass)
                 .addOnCompleteListener{
                     //IF LOGIN FAILED
-                    if(!it.isSuccessful) Toast.makeText(this, "Failed to Login Please try Again", Toast.LENGTH_SHORT).show()
+                    if(!it.isSuccessful)
+                        Toast.makeText(this, "Failed to Login Please try Again", Toast.LENGTH_SHORT).show()
                     if(!it.isSuccessful) return@addOnCompleteListener
 
                     //ELSE IF LOGIN SUCCESSFUL
                     Log.d("LoginActivity", "Successfully Login")
                     val intent = Intent(this, HomeActivity::class.java)
+                    //CLEAR OFF ALL THE PREVIOUS ACTIVITY STACK SO THAT IT WONT BRING THE USER BACK TO THE REGISTER SCREEN
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                 }
                 .addOnFailureListener{
