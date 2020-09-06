@@ -5,7 +5,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.gtrrapp.fragments.AchievementsFragment
+import com.example.gtrrapp.fragments.LogFragment
+import com.example.gtrrapp.fragments.NewsFeedFragment
+import com.example.gtrrapp.fragments.UserFragment
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,8 +19,24 @@ class HomeActivity: AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         verifyUserIsLoggedIn()
-    }
 
+        val newsFeedFragment = NewsFeedFragment()
+        val logFragment = LogFragment()
+        val achievementsFragment = AchievementsFragment()
+        val profileFragment = UserFragment()
+
+        makeCurrentFragment(newsFeedFragment)
+
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId){
+                R.id.ic_newsfeed -> makeCurrentFragment(newsFeedFragment)
+                R.id.ic_Log -> makeCurrentFragment(logFragment)
+                R.id.ic_achievements -> makeCurrentFragment(achievementsFragment)
+                R.id.ic_user -> makeCurrentFragment(profileFragment)
+            }
+            true
+        }
+    }
     //TO CHECK IF THE USER HAVE BEEN AUTHENTICATED
     private fun verifyUserIsLoggedIn(){
         val uid = FirebaseAuth.getInstance().uid
@@ -44,4 +66,11 @@ class HomeActivity: AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main,menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+    //Display current
+    private fun makeCurrentFragment (fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply{
+            replace(R.id.fl_wrapper,fragment)
+            commit()
+        }
 }

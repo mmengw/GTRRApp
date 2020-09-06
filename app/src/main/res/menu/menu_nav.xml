@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_newsfeed"
+        android:icon="@drawable/ic_news_feed"
+        android:title="NewsFeed"/>
+
+    <item
+        android:id="@+id/ic_Log"
+        android:icon="@drawable/ic_log"
+        android:title="User Log"/>
+    <item
+        android:id="@+id/ic_achievements"
+        android:icon="@drawable/ic_achievements"
+        android:title="Achievements"/>
+    <item
+        android:id="@+id/ic_user"
+        android:icon="@drawable/ic_user"
+        android:title="User Profile"/>
+</menu>
