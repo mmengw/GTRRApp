@@ -5,22 +5,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.example.gtrrapp.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.fragment_user.*
+import kotlinx.android.synthetic.main.fragment_user.view.*
+import kotlinx.android.synthetic.main.fragment_user.view.tv_first_name as tv_first_name1
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [UserFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class UserFragment : Fragment() {
+
+    private lateinit var viewOfLayout: View
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    //Firebase references
+    private var mDatabaseReference: DatabaseReference? = null
+    private var mDatabase: FirebaseDatabase? = null
+    private var mAuth: FirebaseAuth? = null
+
+    //UI elements
+    private var username: TextView? = null
+    //private var tvLastName: TextView? = null
+    //private var tvEmail: TextView? = null
+    //private var tvEmailVerifiied: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +41,38 @@ class UserFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        initialise()
+    }
+    private fun initialise() {
+        mDatabase = FirebaseDatabase.getInstance()
+        mDatabaseReference = mDatabase!!.reference!!.child("users")
+        mAuth = FirebaseAuth.getInstance()
+
+
+
+        username = findViewById<View>(R.id.tv_first_name) as TextView
+        //tvLastName = findViewById<View>(R.id.tv_last_name) as TextView
+        //tvEmail = findViewById<View>(R.id.tv_email) as TextView
+        //tvEmailVerifiied = findViewById<View>(R.id.tv_email_verifiied) as TextView
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val mUser = mAuth!!.currentUser
+        val mUserReference = mDatabaseReference!!.child(mUser!!.uid)
+
+        //tvEmail!!.text = mUser.email
+        //tvEmailVerifiied!!.text = mUser.isEmailVerified.toString()
+
+        mUserReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                username!!.text = snapshot.child("username").value as String
+                //tvLastName!!.text = snapshot.child("lastName").value as String
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
     }
 
     override fun onCreateView(
@@ -35,20 +80,12 @@ class UserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false)
+        viewOfLayout = inflater!!.inflate(R.layout.fragment_user, container, false)
+        return viewOfLayout
+
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UserFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
         fun newInstance(param1: String, param2: String) =
             UserFragment().apply {
                 arguments = Bundle().apply {
