@@ -1,18 +1,21 @@
 package com.example.gtrrapp.fragments
 
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.example.gtrrapp.R
+import com.example.gtrrapp.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_main.view.*
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_user.*
-import kotlinx.android.synthetic.main.fragment_user.view.*
-import kotlinx.android.synthetic.main.fragment_user.view.tv_first_name as tv_first_name1
+
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -31,11 +34,13 @@ class UserFragment : Fragment() {
 
     //UI elements
     private var username: TextView? = null
+    //private var userprofilepic: ImageView? = null
     //private var tvLastName: TextView? = null
     //private var tvEmail: TextView? = null
     //private var tvEmailVerifiied: TextView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -50,7 +55,8 @@ class UserFragment : Fragment() {
 
 
 
-        username = findViewById<View>(R.id.tv_first_name) as TextView
+        username = view!!.findViewById<View>(R.id.tv_first_name) as TextView
+        //userprofilepic = view!!.findViewById<View>(R.id.ib_profile_pic) as ImageView
         //tvLastName = findViewById<View>(R.id.tv_last_name) as TextView
         //tvEmail = findViewById<View>(R.id.tv_email) as TextView
         //tvEmailVerifiied = findViewById<View>(R.id.tv_email_verifiied) as TextView
@@ -68,6 +74,11 @@ class UserFragment : Fragment() {
         mUserReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 username!!.text = snapshot.child("username").value as String
+                val image = snapshot.child("profileImageUrl")?.value!!.toString()
+                Picasso.get().load(image).into(ib_profile_pic)
+                Log.d("UserFrag", image)
+
+                //userprofilepic!!.text = snapshot.child("profileImageUrl").value as String
                 //tvLastName!!.text = snapshot.child("lastName").value as String
             }
 
@@ -76,8 +87,8 @@ class UserFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         viewOfLayout = inflater!!.inflate(R.layout.fragment_user, container, false)

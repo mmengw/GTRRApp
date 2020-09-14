@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp">
+    android:background="#A9BA78">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,49 +13,59 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/GTRRLogo_login"
+            android:layout_width="118dp"
+            android:layout_height="118dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="45dp"
-            android:text="Login to GTRR"
-            android:textSize="25sp" />
+            android:layout_marginTop="94dp"
+            app:srcCompat="@drawable/recycle" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/GTRRLogo_login"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="244dp"
+            android:text="Welcome to GTRR"
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/gtrr_email_Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView2"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="30dp"
             android:ems="13"
             android:hint="Enter your Email address"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/gtrr_password_Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/gtrr_email_Login"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="260dp"
+            android:layout_marginTop="15dp"
             android:ems="13"
             android:hint="Enter your password"
+            android:layout_below="@+id/gtrr_email_Login"
             android:inputType="textPassword" />
 
         <Button
             android:id="@+id/gtrr_loginbtn_Login"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/gtrr_password_Login"
-            android:layout_alignParentTop="true"
+            android:layout_marginTop="31dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="360dp"
-            android:text="Log In"
-            tools:layout_editor_absoluteX="164dp" />
+            android:layout_marginHorizontal="130dp"
+            android:background="@drawable/rounded_corner_button"
+            android:text="Login"/>
+
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

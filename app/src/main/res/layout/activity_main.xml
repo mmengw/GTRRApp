@@ -4,42 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#A9BA78">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/GTRRLogo_main"
+            android:layout_width="118dp"
+            android:layout_height="118dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="94dp"
+            app:srcCompat="@drawable/recycle" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_alignTop="@+id/GTRRLogo_main"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="244dp"
             android:text="Welcome to GTRR"
-            android:textSize="30sp" />
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
         <Button
             android:id="@+id/to_login"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="31dp"
-            android:layout_marginEnd="-1dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="130dp"
+            android:background="@drawable/rounded_corner_button"
             android:text="Login" />
 
         <Button
             android:id="@+id/to_register"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/to_login"
-            android:layout_alignEnd="@+id/to_login"
             android:layout_marginTop="31dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="130dp"
+            android:background="@drawable/rounded_corner_button_white"
             android:text="REGISTER"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
