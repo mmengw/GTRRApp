@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="130dp"
+            android:text="Recycle Title" />
+
+        <EditText
+            android:id="@+id/recycleTitle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:padding="8dp"
+            android:ems="10"
+            android:hint="Enter A Title"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/rounded_corner_textbox"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/recycleTitle"
+            android:text="Recycle Description" />
+
+        <EditText
+            android:id="@+id/recycleDescription"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:layout_below="@+id/textView3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:padding="8dp"
+            android:ems="10"
+            android:hint="Enter New User Name"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/rounded_corner_textbox"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/recycleDescription"
+            android:text="Recycle Description" />
+
+        <Spinner
+            android:id="@+id/RecycleType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"/>
+
+        <Button
+            android:id="@+id/updateBtn"
+            android:layout_width="118dp"
+            android:layout_height="52dp"
+            android:layout_below="@+id/RecycleType"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_button"
+            android:text="Update"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

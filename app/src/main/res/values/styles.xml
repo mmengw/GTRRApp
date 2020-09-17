@@ -7,6 +7,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionMenuTextColor">@color/colorPrimaryDark</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:actionOverflowButtonStyle">@style/customOverFlowButton</item>
+    </style>
+
+    <style name="customOverFlowButton" parent="@android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -21,6 +26,7 @@
     <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
 
         <item name="android:textColor">@color/colorPrimaryDark</item>
+
 
     </style>
 

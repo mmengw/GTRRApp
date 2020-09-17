@@ -37,24 +37,28 @@
         <EditText
             android:id="@+id/gtrr_email_Login"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
+            android:padding="8dp"
             android:ems="13"
             android:hint="Enter your Email address"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:background="@drawable/rounded_corner_textbox"/>
 
         <EditText
             android:id="@+id/gtrr_password_Login"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
+            android:padding="8dp"
             android:ems="13"
             android:hint="Enter your password"
             android:layout_below="@+id/gtrr_email_Login"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:background="@drawable/rounded_corner_textbox"/>
 
         <Button
             android:id="@+id/gtrr_loginbtn_Login"

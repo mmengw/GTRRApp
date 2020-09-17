@@ -55,8 +55,7 @@ class UserFragment : Fragment() {
 
 
 
-        username = view!!.findViewById<View>(R.id.tv_first_name) as TextView
-        //userprofilepic = view!!.findViewById<View>(R.id.ib_profile_pic) as ImageView
+        username = view!!.findViewById<View>(R.id.Display_Username) as TextView
         //tvLastName = findViewById<View>(R.id.tv_last_name) as TextView
         //tvEmail = findViewById<View>(R.id.tv_email) as TextView
         //tvEmailVerifiied = findViewById<View>(R.id.tv_email_verifiied) as TextView
@@ -74,6 +73,7 @@ class UserFragment : Fragment() {
         mUserReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 username!!.text = snapshot.child("username").value as String
+
                 val image = snapshot.child("profileImageUrl")?.value!!.toString()
                 Picasso.get().load(image).into(ib_profile_pic)
                 Log.d("UserFrag", image)

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="Account Settings"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/register_photobtn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="SELECT PHOTO" />
+
+        <EditText
+            android:id="@+id/user_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_photobtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:hint="Enter User Bio"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/register_userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_bio"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:hint="Enter New User Name"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_userName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:hint="Enter New Email address"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/gtrrPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_email"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:hint="Enter New Password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/updateBtn"
+            android:layout_width="118dp"
+            android:layout_height="52dp"
+            android:layout_below="@+id/gtrrPassword"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_button"
+            android:text="Update"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

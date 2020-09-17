@@ -37,6 +37,7 @@ class HomeActivity: AppCompatActivity() {
             true
         }
     }
+
     //TO CHECK IF THE USER HAVE BEEN AUTHENTICATED
     private fun verifyUserIsLoggedIn(){
         val uid = FirebaseAuth.getInstance().uid
@@ -47,24 +48,26 @@ class HomeActivity: AppCompatActivity() {
         }
     }
 
+
     //FUNCTION FOR LOGOUT
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            R.id.menu_LogOut->{
-                FirebaseAuth.getInstance().signOut()
-                val intent = Intent (this, MainActivity::class.java)
-                intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-            }
+        val id = item.itemId
+        if(id == R.id.menu_LogOut){
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent (this, MainActivity::class.java)
+            intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }else{
+            val intent = Intent (this, updateActivity::class.java)
+            startActivity(intent)
         }
-
         return super.onOptionsItemSelected(item)
     }
 
     //DISPLAY LOG OUT BUTTON ON THE TOP NAV MENU
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main,menu)
-        return super.onCreateOptionsMenu(menu)
+        return true
     }
 
     //Display current
@@ -73,4 +76,5 @@ class HomeActivity: AppCompatActivity() {
             replace(R.id.fl_wrapper,fragment)
             commit()
         }
+
 }

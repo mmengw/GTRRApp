@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.gtrrapp.MainActivity">
     <item
+        android:id="@+id/menu_settings"
+        android:title="Settings"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/menu_LogOut"
         android:title="Log out"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 </menu>

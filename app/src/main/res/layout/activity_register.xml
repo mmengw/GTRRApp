@@ -31,17 +31,28 @@
             android:layout_marginTop="30dp"
             android:text="SELECT PHOTO" />
 
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_photobtn"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="36dp"
+            android:text="UserName" />
+
         <EditText
             android:id="@+id/register_userName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/register_photobtn"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Name"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="10dp"
+            android:padding="8dp"
             android:ems="10"
             android:hint="Enter your User Name"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:background="@drawable/rounded_corner_textbox"/>
 
         <TextView
             android:id="@+id/GenderTV"
@@ -93,29 +104,51 @@
             android:layout_marginHorizontal="30dp"
             android:calendarViewShown="false"/>
 
+        <TextView
+            android:id="@+id/Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_DOB"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:text="Email" />
+
         <EditText
             android:id="@+id/register_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/register_DOB"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Email"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="10dp"
+            android:padding="8dp"
             android:ems="10"
             android:hint="Enter your Email address"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:background="@drawable/rounded_corner_textbox"/>
+
+        <TextView
+            android:id="@+id/Password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_email"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="36dp"
+            android:text="Password" />
 
         <EditText
             android:id="@+id/gtrrPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/register_email"
+            android:layout_height="40dp"
+            android:layout_below="@+id/Password"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="10dp"
+            android:padding="8dp"
             android:ems="10"
             android:hint="Enter your Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:background="@drawable/rounded_corner_textbox"/>
 
         <Button
             android:id="@+id/registerbtn"

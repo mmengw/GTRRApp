@@ -54,7 +54,7 @@ class RegisterActivity : AppCompatActivity() {
                 .addOnCompleteListener {
                     //IF NOT SUCCESSFUL
                     if(!it.isSuccessful)
-                        Toast.makeText(this, "Failed to Login Please try Again", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Failed to register Please try Again", Toast.LENGTH_SHORT).show()
                     if (!it.isSuccessful) return@addOnCompleteListener
 
                     //ELSE IF SUCCESSFUL
