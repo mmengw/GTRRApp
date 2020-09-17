@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
@@ -14,12 +18,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="25dp"
             android:text="Register Account"
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/select_photobtn"
+            android:id="@+id/register_photobtn"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_below="@+id/textView"
@@ -28,47 +32,102 @@
             android:text="SELECT PHOTO" />
 
         <EditText
+            android:id="@+id/register_userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_photobtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
             android:hint="Enter your User Name"
-            android:id="@+id/gtrr_UserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/select_photobtn"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="36dp"
-            android:ems="10"
             android:inputType="textEmailAddress" />
 
+        <TextView
+            android:id="@+id/GenderTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_userName"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="36dp"
+            android:text="Gender" />
+
+        <RadioGroup
+            android:id="@+id/GendeRradioGrp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/GenderTV"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/register_genderMaleBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/register_genderFemaleBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/DOBTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/GendeRradioGrp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="36dp"
+            android:text="Date of Birth" />
+
+        <DatePicker
+            android:id="@+id/register_DOB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:datePickerMode="spinner"
+            android:layout_below="@+id/DOBTV"
+            android:layout_marginHorizontal="30dp"
+            android:calendarViewShown="false"/>
+
         <EditText
+            android:id="@+id/register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/register_DOB"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
             android:hint="Enter your Email address"
-            android:id="@+id/gtrrEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/gtrr_UserName"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="36dp"
-            android:ems="10"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:hint="Enter your Password"
             android:id="@+id/gtrrPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/gtrrEmail"
-            android:layout_alignRight="@+id/gtrrEmail"
-            android:layout_below="@+id/gtrrEmail"
+            android:layout_below="@+id/register_email"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="36dp"
             android:ems="10"
+            android:hint="Enter your Password"
             android:inputType="textPassword" />
 
         <Button
             android:id="@+id/registerbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="118dp"
+            android:layout_height="52dp"
             android:layout_below="@+id/gtrrPassword"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="31dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_button"
             android:text="REGISTER"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
     </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

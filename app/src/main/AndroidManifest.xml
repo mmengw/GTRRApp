@@ -29,9 +29,6 @@
         <activity android:name=".RegisterActivity"
             android:label="Register Account">
         </activity>
-        <activity android:name=".UserProfileActivity"
-            android:label="User Profile">
-        </activity>
 
     </application>
 

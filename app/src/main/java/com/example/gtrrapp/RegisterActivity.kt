@@ -25,7 +25,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         //ACTION FOR THE SELECT PHOTO BUTTON
-        select_photobtn.setOnClickListener {
+        register_photobtn.setOnClickListener {
             Log.d("RegisterActivity","Show photo selector")
 
             //REDIRECT USER TO SELECT PICTURE FROM THE DOWNLOAD FOLDER
@@ -36,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
 
         //ACTION FOR THE REGISTER BUTTON
         registerbtn.setOnClickListener {
-            val email = gtrrEmail.text.toString()
+            val email = register_email.text.toString()
             val pass = gtrrPassword.text.toString()
 
             //IF EMAIL OR PASSWORD COLUMN IS LEFT BLANK SHOW TOAST
@@ -100,7 +100,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun saveUserToFriebaseDatabase(profileImageUrl: String){
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val user=User(uid, gtrr_UserName.text.toString(), profileImageUrl)
+        val user=User(uid, register_userName.text.toString(), profileImageUrl)
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "Saved user Data to Firebase")
@@ -131,7 +131,7 @@ class RegisterActivity : AppCompatActivity() {
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,selectedPhotoUri)
 
             val bitmapDrawable = BitmapDrawable(bitmap)
-            select_photobtn.setBackgroundDrawable(bitmapDrawable)
+            register_photobtn.setBackgroundDrawable(bitmapDrawable)
         }
     }
 }
