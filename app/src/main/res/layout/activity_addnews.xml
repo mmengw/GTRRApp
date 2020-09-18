@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="News Title"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="125dp"/>
+
+        <EditText
+            android:id="@+id/news_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:layout_below="@+id/title"
+            android:hint="Title...."
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/newslink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="News Title"
+            android:layout_marginLeft="33dp"
+            android:layout_below="@id/news_title"
+            android:layout_marginTop="36dp"/>
+
+        <EditText
+            android:id="@+id/news_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/newslink"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+
+            android:ems="10"
+            android:hint="Place News Link Here"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/coverimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="News Title"
+            android:layout_marginLeft="33dp"
+            android:layout_below="@id/news_link"
+            android:layout_marginTop="36dp"/>
+
+        <Button
+            android:id="@+id/cover_imagebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:layout_below="@+id/coverimage"
+            android:layout_marginLeft="30dp"
+            android:textColor="#000000"
+            android:text="Upload Cover Image"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/updateBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:layout_below="@+id/cover_imagebtn"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/rounded_corner_button"
+            android:paddingHorizontal="20dp"
+            android:text="Update News"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

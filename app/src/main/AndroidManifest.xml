@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".AddNewRecycleLogActivity"
             android:label="Add New Recycle Log">
+        </activity>
+        <activity android:name=".PlasticFactActivity">
 
         </activity>
 
