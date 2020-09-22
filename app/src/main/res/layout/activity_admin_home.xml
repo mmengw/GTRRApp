@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/admin_addNews"
-        tools:listitem="@layout/activity_admin_delete_news_cardview"/>
+        tools:listitem="@layout/admin_delete_news_cardview"/>
 
 
 </RelativeLayout>

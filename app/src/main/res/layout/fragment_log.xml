@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.LogFragment">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/log_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="80dp"
+        android:layout_centerHorizontal="true"
+        android:text="0"/>
+    <TextView
+        android:id="@+id/log_record_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/log_record"
+        android:textSize="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="Log Record"/>
+
+    <ImageView
+        android:id="@+id/add_new_Logbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/log_record_title"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/plus"
+        android:background="@drawable/rounded_corner_button_green"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:padding="10dp"
+        android:clipToPadding="false"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Recycle Log" />
-    </RelativeLayout>
-</FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/add_new_Logbtn"
+        tools:listitem="@layout/log_cardview"/>
+
+</RelativeLayout>

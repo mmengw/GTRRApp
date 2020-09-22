@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_admin_delete_news_cardview.view.*
+import kotlinx.android.synthetic.main.admin_delete_news_cardview.view.*
 
 class AdminHomeAdapter (private val adminFeedList: List<adminItem>) : RecyclerView.Adapter<AdminHomeAdapter.adminHomeViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): adminHomeViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.activity_admin_delete_news_cardview, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.admin_delete_news_cardview, parent, false)
 
         return adminHomeViewHolder(itemView)
     }
