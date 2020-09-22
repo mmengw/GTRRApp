@@ -28,7 +28,7 @@
         <activity android:name=".RegisterActivity"
             android:label="Register Account">
         </activity>
-        <activity android:name=".updateActivity"
+        <activity android:name=".UpdateActivity"
             android:label="User Account Setting">
         </activity>
         <activity android:name=".AddNewRecycleLogActivity"
@@ -37,7 +37,15 @@
         <activity android:name=".PlasticFactActivity">
 
         </activity>
+        <activity android:name=".AdminHomeActivity"
+            android:label="Admin">
+        </activity>
+        <activity android:name=".AdminAddNews">
 
+        </activity>
+        <activity android:name=".AdminLoginActivity">
+
+        </activity>
     </application>
 
 </manifest>

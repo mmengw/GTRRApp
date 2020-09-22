@@ -14,7 +14,9 @@ import com.example.gtrrapp.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_user.*
+import kotlinx.android.synthetic.main.fragment_user.view.*
 
 
 private const val ARG_PARAM1 = "param1"
@@ -51,7 +53,6 @@ class UserFragment : Fragment() {
         mDatabase = FirebaseDatabase.getInstance()
         mDatabaseReference = mDatabase!!.reference!!.child("users")
         mAuth = FirebaseAuth.getInstance()
-
 
 
         username = view!!.findViewById<View>(R.id.Display_Username) as TextView

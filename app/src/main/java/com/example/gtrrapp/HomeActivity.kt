@@ -6,9 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.gtrr2.fragments.newsFeedFragment
 import com.example.gtrrapp.fragments.AchievementsFragment
 import com.example.gtrrapp.fragments.LogFragment
-import com.example.gtrrapp.fragments.NewsFeedFragment
 import com.example.gtrrapp.fragments.UserFragment
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home.*
@@ -20,7 +20,7 @@ class HomeActivity: AppCompatActivity() {
 
         verifyUserIsLoggedIn()
 
-        val newsFeedFragment = NewsFeedFragment()
+        val newsFeedFragment = newsFeedFragment()
         val logFragment = LogFragment()
         val achievementsFragment = AchievementsFragment()
         val profileFragment = UserFragment()
@@ -58,7 +58,7 @@ class HomeActivity: AppCompatActivity() {
             intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }else{
-            val intent = Intent (this, updateActivity::class.java)
+            val intent = Intent (this, UpdateActivity::class.java)
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)

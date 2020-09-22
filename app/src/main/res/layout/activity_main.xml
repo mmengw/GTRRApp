@@ -56,6 +56,16 @@
             android:text="REGISTER"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/admin_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/to_register"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Log In As Admin"
+            android:textColor="#3F51B5"/>
+
 
     </RelativeLayout>
 
