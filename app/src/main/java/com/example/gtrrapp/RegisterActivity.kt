@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Html
 import android.util.Log
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +24,8 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        //val datePicker = findViewById<DatePicker>(R.id.register_DOB)
 
         //ACTION FOR THE SELECT PHOTO BUTTON
         register_photobtn.setOnClickListener {
@@ -100,7 +103,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun saveUserToFriebaseDatabase(profileImageUrl: String){
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val user=User(uid, register_userName.text.toString(), profileImageUrl)
+        val user=User(uid, register_userName.text.toString(), profileImageUrl,register_DOB.text.toString())
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "Saved user Data to Firebase")
@@ -137,4 +140,4 @@ class RegisterActivity : AppCompatActivity() {
 }
 
 //CREATING A USER CLASS TO IDENTIFY WHAT TO STORE IN THE DATABASE
-class User(val uid:String, val username:String, val profileImageUrl: String)
+class User(val uid:String, val username:String, val profileImageUrl: String, val DOB:String)

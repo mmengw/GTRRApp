@@ -95,14 +95,19 @@
             android:layout_marginTop="36dp"
             android:text="Date of Birth" />
 
-        <DatePicker
+        <EditText
             android:id="@+id/register_DOB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:datePickerMode="spinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_below="@+id/DOBTV"
+            android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="30dp"
-            android:calendarViewShown="false"/>
+            android:layout_marginTop="10dp"
+            android:padding="8dp"
+            android:ems="10"
+            android:hint="dd/mm/yyyy"
+            android:inputType="date"
+            android:background="@drawable/rounded_corner_textbox"/>
 
         <TextView
             android:id="@+id/Email"
