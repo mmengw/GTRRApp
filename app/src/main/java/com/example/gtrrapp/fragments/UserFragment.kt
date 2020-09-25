@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_user.*
 import kotlinx.android.synthetic.main.fragment_user.view.*
+import org.w3c.dom.Text
 
 
 private const val ARG_PARAM1 = "param1"
@@ -35,10 +36,9 @@ class UserFragment : Fragment() {
 
     //UI elements
     private var username: TextView? = null
-    //private var userprofilepic: ImageView? = null
-    //private var tvLastName: TextView? = null
-    //private var tvEmail: TextView? = null
-    //private var tvEmailVerifiied: TextView? = null
+    private var email: TextView? = null
+    private var gender : TextView? = null
+    private var DOB: TextView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,10 +55,10 @@ class UserFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
 
 
-        username = view!!.findViewById<View>(R.id.Display_Username) as TextView
-        //tvLastName = findViewById<View>(R.id.tv_last_name) as TextView
-        //tvEmail = findViewById<View>(R.id.tv_email) as TextView
-        //tvEmailVerifiied = findViewById<View>(R.id.tv_email_verifiied) as TextView
+        username = view!!.findViewById(R.id.Display_Username) as TextView
+        email = view!!.findViewById(R.id.Display_email) as TextView
+        gender = view!!.findViewById(R.id.Display_gender) as TextView
+        DOB = view!!.findViewById(R.id.Display_dob) as TextView
     }
 
     override fun onStart() {
@@ -67,19 +67,16 @@ class UserFragment : Fragment() {
         val mUser = mAuth!!.currentUser
         val mUserReference = mDatabaseReference!!.child(mUser!!.uid)
 
-        //tvEmail!!.text = mUser.email
-        //tvEmailVerifiied!!.text = mUser.isEmailVerified.toString()
-
         mUserReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 username!!.text = snapshot.child("username").value as String
+                email!!.text = snapshot.child("email").value as String
+                gender!!. text = snapshot.child("gender").value as String
+                DOB!!. text = snapshot.child("dob").value as String
 
                 val image = snapshot.child("profileImageUrl")?.value!!.toString()
                 Picasso.get().load(image).into(ib_profile_pic)
                 Log.d("UserFrag", image)
-
-                //userprofilepic!!.text = snapshot.child("profileImageUrl").value as String
-                //tvLastName!!.text = snapshot.child("lastName").value as String
             }
 
             override fun onCancelled(databaseError: DatabaseError) {}

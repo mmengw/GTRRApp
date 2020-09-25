@@ -16,66 +16,68 @@
         android:layout_below="@id/ib_profile_pic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp">
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:padding="20dp">
         <TableRow android:layout_marginBottom="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bio : "
-                android:textSize="20sp" />
+                android:textSize="17dp" />
             <TextView
                 android:id="@+id/Display_bio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp" />
+                android:textSize="17dp" />
         </TableRow>
         <TableRow android:layout_marginBottom="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="User Name : "
-                android:textSize="20sp" />
+                android:textSize="17dp" />
             <TextView
                 android:id="@+id/Display_Username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp" />
+                android:textSize="17dp" />
         </TableRow>
         <TableRow android:layout_marginBottom="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="User Email : "
-                android:textSize="20sp" />
+                android:textSize="17dp" />
             <TextView
-                android:id="@+id/Dsiaply_email"
+                android:id="@+id/Display_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp" />
+                android:textSize="17dp" />
         </TableRow>
         <TableRow android:layout_marginBottom="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gender : "
-                android:textSize="20sp" />
+                android:textSize="17dp" />
             <TextView
                 android:id="@+id/Display_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp" />
+                android:textSize="17dp" />
         </TableRow>
         <TableRow>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date of Birth : "
-                android:textSize="20sp" />
+                android:textSize="17dp" />
             <TextView
                 android:id="@+id/Display_dob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp" />
+                android:textSize="17dp" />
         </TableRow>
     </TableLayout>
 </RelativeLayout>
