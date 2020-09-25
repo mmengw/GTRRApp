@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.text.Html
 import android.util.Log
 import android.widget.DatePicker
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +18,11 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_register.registerbtn
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_register.gtrrPassword
+import kotlinx.android.synthetic.main.activity_register.register_email
+import kotlinx.android.synthetic.main.activity_register.register_photobtn
+import kotlinx.android.synthetic.main.activity_register.register_userName
+import kotlinx.android.synthetic.main.activity_update_settings.*
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -101,9 +107,10 @@ class RegisterActivity : AppCompatActivity() {
 
     //STORE USER INFORMATION TO FIREBASE DATABASE
     private fun saveUserToFriebaseDatabase(profileImageUrl: String){
+        val radio : RadioButton = findViewById(GendeRradioGrp.checkedRadioButtonId)
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val user=User(uid, register_userName.text.toString(), profileImageUrl,register_DOB.text.toString())
+        val user=User(uid, register_userName.text.toString(), profileImageUrl,register_DOB.text.toString(),register_email.text.toString(),"${radio.text}", user_bio.text.toString())
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "Saved user Data to Firebase")
@@ -140,4 +147,4 @@ class RegisterActivity : AppCompatActivity() {
 }
 
 //CREATING A USER CLASS TO IDENTIFY WHAT TO STORE IN THE DATABASE
-class User(val uid:String, val username:String, val profileImageUrl: String, val DOB:String)
+class User(val uid:String, val username:String, val profileImageUrl: String, val DOB:String, val email:String, val gender:String, val bio:String)
