@@ -2,37 +2,31 @@ package com.example.gtrrapp
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
-import android.widget.RadioButton
-import android.widget.Toast
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_add_recyclelog.*
-import kotlinx.android.synthetic.main.activity_add_recyclelog.updateBtn
 import kotlinx.android.synthetic.main.activity_admin_addnews.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.activity_register.register_email
-import kotlinx.android.synthetic.main.activity_register.register_photobtn
-import kotlinx.android.synthetic.main.activity_register.register_userName
-import kotlinx.android.synthetic.main.activity_update_settings.*
 import java.util.*
 
 class AdminAddNews : AppCompatActivity() {
 
-    private var mDatabaseReference: DatabaseReference? = null
-    private var mDatabase: FirebaseDatabase? = null
-    private var mAuth: FirebaseAuth? = null
+    lateinit var newsTitle : TextView
+    lateinit var newsLink : TextView
+    lateinit var uploadButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_addnews)
+
+        newsTitle = findViewById(R.id.news_title)
+        newsLink = findViewById(R.id.news_link)
+        uploadButton = findViewById(R.id.uploadBtn)
 
         //ACTION FOR THE SELECT PHOTO BUTTON
         cover_imagebtn.setOnClickListener {
@@ -44,8 +38,11 @@ class AdminAddNews : AppCompatActivity() {
         }
 
         //ACTION FOR THE UPDATE BUTTON
-        uploadBtn.setOnClickListener {
-                uploadImageToFirebaseStorage()
+        uploadButton.setOnClickListener {
+            uploadImageToFirebaseStorage()
+            val intent = Intent(this, AdminAddNews::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
         }
     }
 
@@ -55,7 +52,7 @@ class AdminAddNews : AppCompatActivity() {
         if (selectedPhotoUri == null) return
 
         val filename = UUID.randomUUID().toString()
-        val ref= FirebaseStorage.getInstance().getReference("/images/$filename")
+        val ref= FirebaseStorage.getInstance().getReference("/News/$filename")
 
         ref.putFile(selectedPhotoUri!!)
             .addOnSuccessListener{
@@ -65,7 +62,7 @@ class AdminAddNews : AppCompatActivity() {
                     it.toString()
                     Log.d("AddNewsActivity", "File Location: $it")
 
-                    savNewsToFriebaseDatabase(it.toString())
+                    saveNewsToFriebaseDatabase(it.toString())
                 }
             }
             .addOnFailureListener{
@@ -73,10 +70,19 @@ class AdminAddNews : AppCompatActivity() {
             }
     }
 
+    private fun saveNewsToFriebaseDatabase(NewsCoverImageUrl: String){
 
-    private fun savNewsToFriebaseDatabase(NewsCoverImageUrl: String){
+        val title = newsTitle.text.toString()
+        val link = newsLink.text.toString()
 
-        ref.setValue(news)
+        if (title.isEmpty() || link.isEmpty()){
+            newsTitle.error = "Please enter title and link"
+        }
+
+        val ref = FirebaseDatabase.getInstance().getReference("News")
+        val newsId = ref.push().key
+        val news = News (newsId,title,link,NewsCoverImageUrl)
+        ref.child(newsId!!).setValue(news)
             .addOnSuccessListener {
                 Log.d("AddNewsActivity", "Saved news Data to Firebase")
 
@@ -85,6 +91,19 @@ class AdminAddNews : AppCompatActivity() {
                 Log.d("AddNewsActivity","Fail to upload news data")
             }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data !=null){
+
+            //PROCEED TO CHECK WHAT THE SELECTED IMAGE WAS
+            Log.d("AddNewsActivity", "Photo was selected")
+
+            selectedPhotoUri = data.data
+
+        }
+    }
 }
 
-class News(val title:String, val link:String, val CoverImgUrl:String)
+class News(val newsid: String?, val ntitle:String, val nlink:String, val CoverImgUrl:String)

@@ -110,7 +110,7 @@ class RegisterActivity : AppCompatActivity() {
         val radio : RadioButton = findViewById(GendeRradioGrp.checkedRadioButtonId)
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val user=User(uid, register_userName.text.toString(), profileImageUrl,register_DOB.text.toString(),register_email.text.toString(),"${radio.text}", user_bio.text.toString())
+        val user=User(uid, register_userName.text.toString(), profileImageUrl,register_DOB.text.toString(),register_email.text.toString(),"${radio.text}")
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "Saved user Data to Firebase")
@@ -147,4 +147,4 @@ class RegisterActivity : AppCompatActivity() {
 }
 
 //CREATING A USER CLASS TO IDENTIFY WHAT TO STORE IN THE DATABASE
-class User(val uid:String, val username:String, val profileImageUrl: String, val DOB:String, val email:String, val gender:String, val bio:String)
+class User(val uid:String, val username:String, val profileImageUrl: String, val DOB:String, val email:String, val gender:String)
