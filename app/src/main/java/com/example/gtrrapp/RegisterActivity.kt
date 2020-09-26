@@ -31,7 +31,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        //val datePicker = findViewById<DatePicker>(R.id.register_DOB)
 
         //ACTION FOR THE SELECT PHOTO BUTTON
         register_photobtn.setOnClickListener {
