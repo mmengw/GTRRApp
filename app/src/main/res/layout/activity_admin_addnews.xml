@@ -58,7 +58,7 @@
             android:id="@+id/coverimage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="News Title"
+            android:text="News Cover Image"
             android:layout_marginLeft="33dp"
             android:layout_below="@id/news_link"
             android:layout_marginTop="36dp"/>
@@ -75,7 +75,7 @@
             android:textStyle="bold"/>
 
         <Button
-            android:id="@+id/updateBtn"
+            android:id="@+id/uploadBtn"
             android:layout_width="wrap_content"
             android:layout_height="52dp"
             android:layout_below="@+id/cover_imagebtn"
@@ -84,7 +84,7 @@
             android:layout_marginTop="50dp"
             android:background="@drawable/rounded_corner_button"
             android:paddingHorizontal="20dp"
-            android:text="Update News"
+            android:text="Upload News"
             android:textStyle="bold" />
 
     </RelativeLayout>

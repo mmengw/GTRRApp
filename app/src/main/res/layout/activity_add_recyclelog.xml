@@ -64,7 +64,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="30dp"
             android:layout_below="@+id/recycleDescription"
-            android:text="Recycle Description" />
+            android:text="Recycle Material Type" />
 
         <Spinner
             android:id="@+id/RecycleType"
@@ -87,6 +87,7 @@
             android:background="@drawable/rounded_corner_button"
             android:text="Update"
             android:textStyle="bold" />
+
 
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
