@@ -39,6 +39,7 @@ class UserFragment : Fragment() {
     private var email: TextView? = null
     private var gender : TextView? = null
     private var DOB: TextView? = null
+    private var bio: TextView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,6 +60,7 @@ class UserFragment : Fragment() {
         email = view!!.findViewById(R.id.Display_email) as TextView
         gender = view!!.findViewById(R.id.Display_gender) as TextView
         DOB = view!!.findViewById(R.id.Display_dob) as TextView
+        bio = view!!.findViewById(R.id.Display_bio) as TextView
     }
 
     override fun onStart() {
@@ -73,6 +75,7 @@ class UserFragment : Fragment() {
                 email!!.text = snapshot.child("email").value as String
                 gender!!. text = snapshot.child("gender").value as String
                 DOB!!. text = snapshot.child("dob").value as String
+                bio!!.text = snapshot.child("bio").value as String
 
                 val image = snapshot.child("profileImageUrl")?.value!!.toString()
                 Picasso.get().load(image).into(ib_profile_pic)
