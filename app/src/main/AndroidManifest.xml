@@ -33,6 +33,7 @@
         </activity>
         <activity android:name=".AddNewRecycleLogActivity"
             android:label="Add New Recycle Log">
+
         </activity>
         <activity android:name=".PlasticFactActivity">
 
@@ -41,10 +42,7 @@
             android:label="Admin">
         </activity>
         <activity android:name=".AdminAddNews">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+
         </activity>
         <activity android:name=".AdminLoginActivity">
 

@@ -163,6 +163,13 @@
             android:background="@drawable/rounded_corner_button"
             android:text="REGISTER"
             android:textStyle="bold" />
+        <EditText
+            android:id="@+id/register_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/registerbtn"
+            android:inputType="text"
+            android:visibility="invisible"/>
 
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

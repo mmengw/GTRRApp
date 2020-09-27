@@ -53,7 +53,7 @@
             android:layout_marginTop="5dp"
             android:padding="8dp"
             android:ems="10"
-            android:hint="Enter New User Name"
+            android:hint="Enter Recycle Description"
             android:inputType="textEmailAddress"
             android:background="@drawable/rounded_corner_textbox"/>
 
@@ -75,6 +75,14 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="5dp"
             android:ems="10"/>
+
+        <TextView
+            android:id="@+id/resultType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/RecycleType"
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/updateBtn"

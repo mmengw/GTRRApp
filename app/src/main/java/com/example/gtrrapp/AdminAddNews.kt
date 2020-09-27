@@ -106,4 +106,7 @@ class AdminAddNews : AppCompatActivity() {
     }
 }
 
-class News(val newsid: String?, val ntitle:String, val nlink:String, val CoverImgUrl:String)
+class News(val newsid: String?, val ntitle:String, val nlink:String, val coverImgUrl:String){
+    constructor() : this("","","","")
+}
+

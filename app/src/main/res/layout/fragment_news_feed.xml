@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recyclerview_newsfeed"
         android:padding="10dp"
         android:clipToPadding="false"
         android:layout_width="match_parent"
