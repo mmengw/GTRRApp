@@ -7,6 +7,7 @@
     android:layout_marginTop="5dp">
 
     <RelativeLayout
+        android:id="@+id/RL_Link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"

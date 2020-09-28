@@ -1,15 +1,16 @@
 package com.example.gtrr2.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gtrr2.newsItem
-import com.example.gtrrapp.News
-import com.example.gtrrapp.NewsFeedAdapter
-import com.example.gtrrapp.R
+import com.example.gtrrapp.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -19,6 +20,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_news_feed.*
+import kotlinx.android.synthetic.main.newsfeed_cardview.*
 import kotlinx.android.synthetic.main.newsfeed_cardview.view.*
 
 
@@ -27,9 +29,11 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-open class newsFeedFragment : Fragment() {
+open class newsFeedFragment : Fragment(), OnNewsItemClickListener {
     private var param1: String? = null
     private var param2: String? = null
+
+    private var url : String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,6 +46,18 @@ open class newsFeedFragment : Fragment() {
         recyclerview_newsfeed.setHasFixedSize(true)
 
         fetchNews()
+
+//        RL_Link.setOnClickListener{
+//            val link = url
+//            val intent = Intent(Intent.ACTION_VIEW)
+//            intent.data= Uri.parse(link)
+//            startActivity(intent)
+//        }
+
+    }
+
+    override fun onItemClick(item: newsItem, position: Int) {
+
     }
 
     private fun fetchNews(){
@@ -50,6 +66,7 @@ open class newsFeedFragment : Fragment() {
             override fun onDataChange(data: DataSnapshot){
                 val adapter = GroupAdapter<ViewHolder>()
                 data.children.forEach{
+//                    url = data.child("nlink").value as String
                     val news = it.getValue(News::class.java)
                     if (news != null){
                         adapter.add(NewsItem(news))
