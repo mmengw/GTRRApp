@@ -33,7 +33,7 @@ open class newsFeedFragment : Fragment() { //OnNewsItemClickListener
     private var param1: String? = null
     private var param2: String? = null
 
-    private var url : String? = null
+//    private var url : String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,7 +66,6 @@ open class newsFeedFragment : Fragment() { //OnNewsItemClickListener
             override fun onDataChange(data: DataSnapshot){
                 val adapter = GroupAdapter<ViewHolder>()
                 data.children.forEach{
-//                    url = data.child("nlink").value as String
                     val news = it.getValue(News::class.java)
                     if (news != null){
                         adapter.add(NewsItem(news))

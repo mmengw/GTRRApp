@@ -6,40 +6,64 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gtrr.fragments.NewsItem
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Item
+import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_admin_home.*
+import kotlinx.android.synthetic.main.admin_delete_news_cardview.view.*
 
 class AdminHomeActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_home)
 
-        val newsfeedList = generateDummyList(100)
 
-        recycler_view.adapter = AdminHomeAdapter(newsfeedList)
-        recycler_view.layoutManager= LinearLayoutManager(this)
-        recycler_view.setHasFixedSize(true)
+        recyclerview_adminFeed.layoutManager= LinearLayoutManager(this)
+        recyclerview_adminFeed.setHasFixedSize(true)
+
+        fetchNews()
 
         admin_addNews.setOnClickListener {
             val intent = Intent(this, AdminAddNews::class.java)
             startActivity(intent)
         }
     }
+    private fun fetchNews(){
+        val ref= FirebaseDatabase.getInstance().getReference("/News")
+        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(data: DataSnapshot){
+                val adapter = GroupAdapter<ViewHolder>()
+                data.children.forEach{
+                    val news = it.getValue(News::class.java)
+                    if (news != null){
+                        adapter.add(newsItem(news))
+                    }
+                }
 
-    private fun generateDummyList(size :Int): List<adminItem>{
-        val list = ArrayList<adminItem>()
-        for (i in 0 until size) {
-            val del = R.drawable.trash
-            val drawable = when (i % 3){
-                0 -> R.drawable.ic_user
-                1 -> R.drawable.ic_news_feed
-                else -> R.drawable.ic_log
+//                adapter.setOnItemClickListener{item, view ->
+//                    val newsItem = item as NewsItem
+//
+//                    val intent = Intent(getActivity(),WebViewActivity::class.java)
+//                    intent.putExtra("NEWS_KEY", newsItem.news.nlink)
+//                    startActivity(intent)
+//                }
+
+                recyclerview_adminFeed.adapter = adapter
             }
-            val item = adminItem(drawable, "Recycling Title $i", del)
-            list += item
-        }
-        return list
+            override fun onCancelled (error: DatabaseError){
+
+            }
+        })
     }
+
 
     //FUNCTION FOR LOGOUT
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -60,4 +84,15 @@ class AdminHomeActivity: AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_admin_main,menu)
         return super.onCreateOptionsMenu(menu)
     }
+}
+class newsItem(val news:News): Item<ViewHolder>(){
+    override fun bind(viewHolder: ViewHolder, position: Int) {
+        viewHolder.itemView.admin_title.text = news.ntitle
+        Picasso.get().load(news.coverImgUrl).into(viewHolder.itemView.admin_imageView)
+    }
+
+    override fun getLayout(): Int {
+        return R.layout.admin_delete_news_cardview
+    }
+
 }
