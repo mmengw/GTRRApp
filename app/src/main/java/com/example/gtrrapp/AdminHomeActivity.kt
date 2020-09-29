@@ -50,8 +50,7 @@ class AdminHomeActivity: AppCompatActivity() {
 
 //                adapter.setOnItemClickListener{item, view ->
 //                    val newsItem = item as NewsItem
-//
-//                    val intent = Intent(getActivity(),WebViewActivity::class.java)
+//                    val intent = Intent(this@AdminHomeActivity,WebViewActivity::class.java)
 //                    intent.putExtra("NEWS_KEY", newsItem.news.nlink)
 //                    startActivity(intent)
 //                }
