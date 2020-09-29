@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.gtrr2.fragments.newsFeedFragment
+import com.example.gtrr.fragments.newsFeedFragment
 import com.example.gtrrapp.fragments.LogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference

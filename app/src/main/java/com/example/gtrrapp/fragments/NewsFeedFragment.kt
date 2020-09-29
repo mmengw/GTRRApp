@@ -1,4 +1,4 @@
-package com.example.gtrr2.fragments
+package com.example.gtrr.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -29,7 +29,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-open class newsFeedFragment : Fragment(), OnNewsItemClickListener {
+open class newsFeedFragment : Fragment() { //OnNewsItemClickListener
     private var param1: String? = null
     private var param2: String? = null
 
@@ -56,9 +56,9 @@ open class newsFeedFragment : Fragment(), OnNewsItemClickListener {
 
     }
 
-    override fun onItemClick(item: newsItem, position: Int) {
-
-    }
+//    override fun onItemClick(item: newsItem, position: Int) {
+//
+//    }
 
     private fun fetchNews(){
         val ref=FirebaseDatabase.getInstance().getReference("/News")
@@ -72,6 +72,15 @@ open class newsFeedFragment : Fragment(), OnNewsItemClickListener {
                         adapter.add(NewsItem(news))
                     }
                 }
+
+                adapter.setOnItemClickListener{item, view ->
+                    val newsItem = item as NewsItem
+
+                    val intent = Intent(getActivity(),WebViewActivity::class.java)
+                    intent.putExtra("NEWS_KEY", newsItem.news.nlink)
+                    startActivity(intent)
+                }
+
                 recyclerview_newsfeed.adapter = adapter
             }
             override fun onCancelled (error: DatabaseError){

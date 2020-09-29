@@ -1,5 +1,6 @@
 <resources>
     <!-- Base application theme. -->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -7,7 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionMenuTextColor">@color/colorPrimaryDark</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name ="android:textColorSecondary">@color/colorPrimaryDark</item>
         <item name="android:actionOverflowButtonStyle">@style/customOverFlowButton</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_left_arrow</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
     </style>
 
     <style name="customOverFlowButton" parent="@android:style/Widget.Holo.Light.ActionButton.Overflow">

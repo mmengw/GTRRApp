@@ -6,7 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.gtrr2.fragments.newsFeedFragment
+import com.example.gtrr.fragments.newsFeedFragment
 import com.example.gtrrapp.fragments.AchievementsFragment
 import com.example.gtrrapp.fragments.LogFragment
 import com.example.gtrrapp.fragments.UserFragment

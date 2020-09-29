@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.gtrr2.fragments.NewsItem
+import com.example.gtrr.fragments.NewsItem
 import com.example.gtrr2.newsItem
 import com.example.gtrrapp.*
 import com.google.firebase.auth.FirebaseAuth
