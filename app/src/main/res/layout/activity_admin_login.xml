@@ -42,7 +42,7 @@
             android:layout_marginTop="30dp"
             android:padding="8dp"
             android:ems="13"
-            android:hint="Enter your Email address"
+            android:hint="Enter Email address"
             android:inputType="textEmailAddress"
             android:background="@drawable/rounded_corner_textbox"/>
 
@@ -54,7 +54,7 @@
             android:layout_marginTop="15dp"
             android:padding="8dp"
             android:ems="13"
-            android:hint="Enter your password"
+            android:hint="Enter password"
             android:layout_below="@+id/gtrr_email_Login"
             android:inputType="textPassword"
             android:background="@drawable/rounded_corner_textbox"/>

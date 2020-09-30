@@ -29,7 +29,7 @@
             android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:text="SELECT PHOTO" />
+            android:text="SELECT A NEW PHOTO" />
 
         <EditText
             android:id="@+id/user_bio"

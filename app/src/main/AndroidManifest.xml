@@ -56,7 +56,6 @@
                 android:value=".AdminHomeActivity"/>
         </activity>
         <activity android:name=".AdminLoginActivity"
-            android:label="Admin Login"
             android:windowSoftInputMode="adjustResize">
 
         </activity>
