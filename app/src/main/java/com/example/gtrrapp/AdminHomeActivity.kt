@@ -4,8 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gtrr.fragments.NewsItem
 import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -21,9 +24,16 @@ import kotlinx.android.synthetic.main.activity_admin_home.*
 import kotlinx.android.synthetic.main.admin_delete_news_cardview.view.*
 
 class AdminHomeActivity: AppCompatActivity() {
+
+//    private lateinit var newfeedlist:RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+//        newfeedlist = findViewById(R.id.recyclerview_adminFeed)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_home)
+
 
 
         recyclerview_adminFeed.layoutManager= LinearLayoutManager(this)
@@ -36,6 +46,8 @@ class AdminHomeActivity: AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
     private fun fetchNews(){
         val ref= FirebaseDatabase.getInstance().getReference("/News")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
@@ -44,16 +56,33 @@ class AdminHomeActivity: AppCompatActivity() {
                 data.children.forEach{
                     val news = it.getValue(News::class.java)
                     if (news != null){
-                        adapter.add(newsItem(news))
+                        adapter.add(AdminItems(news))
                     }
                 }
 
-//                adapter.setOnItemClickListener{item, view ->
-//                    val newsItem = item as NewsItem
-//                    val intent = Intent(this@AdminHomeActivity,WebViewActivity::class.java)
-//                    intent.putExtra("NEWS_KEY", newsItem.news.nlink)
-//                    startActivity(intent)
-//                }
+                adapter.setOnItemLongClickListener(){item, view ->
+                    val adminItems = item as AdminItems
+                    val builder = AlertDialog.Builder(this@AdminHomeActivity)
+                    builder.setTitle("Are You Sure You Want To Delete This News?")
+
+                    builder.setPositiveButton(android.R.string.yes){dialog, id ->
+                        val newsID = adminItems.adminNews.newsid
+                        ref.child("$newsID").removeValue()
+                        val intent = Intent(this@AdminHomeActivity, AdminHomeActivity::class.java)
+                        finish()
+                        startActivity(intent)
+                    }
+                    builder.setNegativeButton(android.R.string.no){dialog, id ->
+                        dialog.dismiss()
+                    }
+                    builder.show()
+                    return@setOnItemLongClickListener true
+
+                    //val newsID = adminItems.adminNews.newsid
+
+//                    ref.child("$newsID").removeValue()
+
+                }
 
                 recyclerview_adminFeed.adapter = adapter
             }
@@ -84,10 +113,10 @@ class AdminHomeActivity: AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 }
-class newsItem(val news:News): Item<ViewHolder>(){
+class AdminItems(val adminNews:News): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.admin_title.text = news.ntitle
-        Picasso.get().load(news.coverImgUrl).into(viewHolder.itemView.admin_imageView)
+        viewHolder.itemView.admin_title.text = adminNews.ntitle
+        Picasso.get().load(adminNews.coverImgUrl).into(viewHolder.itemView.admin_imageView)
     }
 
     override fun getLayout(): Int {

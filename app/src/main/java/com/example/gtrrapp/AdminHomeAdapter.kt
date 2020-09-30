@@ -21,7 +21,7 @@ class AdminHomeAdapter (private val adminFeedList: List<adminItem>) : RecyclerVi
 
         holder.imageView.setImageResource(currentItem.imageResource)
         holder.textView.text = currentItem.title
-        holder.deleteView.setImageResource(currentItem.del)
+        holder.deleteView.text = currentItem.title
     }
 
     override fun getItemCount() = adminFeedList.size
@@ -30,7 +30,7 @@ class AdminHomeAdapter (private val adminFeedList: List<adminItem>) : RecyclerVi
 
         val imageView : ImageView = itemView.admin_imageView
         val textView: TextView = itemView.admin_title
-        val deleteView : ImageView = itemView.admin_deletebtn
+        val deleteView : TextView = itemView.admin_deletebtn
     }
 
 }
