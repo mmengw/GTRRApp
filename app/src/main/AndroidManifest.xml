@@ -10,48 +10,54 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".HomeActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".RegisterActivity"
-            android:label="Register Account">
-        </activity>
-        <activity android:name=".UpdateActivity"
-            android:label="User Account Setting">
-        </activity>
-        <activity android:name=".AddNewRecycleLogActivity"
-            android:label="Add New Recycle Log">
-
-        </activity>
-        <activity android:name=".PlasticFactActivity">
-
-        </activity>
-        <activity android:name=".AdminHomeActivity"
-            android:label="Admin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+        <activity android:name=".RegisterActivity"
+            android:label="Register Account"
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
-        <activity android:name=".AdminAddNews">
+        <activity android:name=".UpdateActivity"
+            android:label="User Account Setting"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+        <activity android:name=".AddNewRecycleLogActivity"
+            android:label="Add New Recycle Log"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+        <activity android:name=".PlasticFactActivity"
+            android:label="Plastic Facts">
+
+        </activity>
+        <activity android:name=".AdminHomeActivity"
+            android:label="Admin">
+
+        </activity>
+        <activity android:name=".AdminAddNews"
+            android:label="Add Recycling News"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AdminHomeActivity"/>
         </activity>
-        <activity android:name=".AdminLoginActivity">
+        <activity android:name=".AdminLoginActivity"
+            android:label="Admin Login"
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
         <activity android:name=".WebViewActivity">
