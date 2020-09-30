@@ -50,6 +50,8 @@ class UserFragment : Fragment() {
         }
         initialise()
     }
+
+    //INITIALISE THE VALUES
     private fun initialise() {
         mDatabase = FirebaseDatabase.getInstance()
         mDatabaseReference = mDatabase!!.reference!!.child("users")
@@ -63,12 +65,14 @@ class UserFragment : Fragment() {
         bio = view!!.findViewById(R.id.Display_bio) as TextView
     }
 
+    //FETCH CURRENT USER FROM FIREBASE
     override fun onStart() {
         super.onStart()
 
         val mUser = mAuth!!.currentUser
         val mUserReference = mDatabaseReference!!.child(mUser!!.uid)
 
+        //ASSIGN EACH ATTAINED VALUE TO CORRESPONDING VIEWS
         mUserReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 username!!.text = snapshot.child("username").value as String

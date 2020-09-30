@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/news_display_block">
+        android:background="@drawable/adminnews_display_block">
 
         <TextView
             android:id="@+id/admin_title"

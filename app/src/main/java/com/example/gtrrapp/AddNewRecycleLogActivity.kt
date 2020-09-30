@@ -28,10 +28,6 @@ class AddNewRecycleLogActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-//        var mainFragment: newsFeedFragment = newsFeedFragment()
-//        supportFragmentManager.beginTransaction().add(R.id.container, mainFragment)
-//            .commit()
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_recyclelog)
 
@@ -65,22 +61,11 @@ class AddNewRecycleLogActivity : AppCompatActivity(){
         }
     }
 
-//    class frag : newsFeedFragment() {
-//        override fun onCreateView(
-//            inflater: LayoutInflater,
-//            container: ViewGroup?,
-//            savedInstanceState: Bundle?
-//        ): View? {
-//            // replace if you already have a layout
-//            return inflater.inflate(R.layout.fragment_news_feed, container, false)
-//        }
-//    }
-
     private fun saveRecycleLogToFirebaseDatabase(){
 
         val dateTime = LocalDateTime.now()
 
-        var formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm")
+        val formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm")
 
         val title = logTitle.text.toString()
         val des = logDes.text.toString()
@@ -107,6 +92,7 @@ class AddNewRecycleLogActivity : AppCompatActivity(){
     }
 }
 
+//RECYCLELOG MODULE
 class RecycleLog(val logId: String, val rtitle:String, val rdes:String, val rtype:String, val dateTime: String){
     constructor() : this("","","","","")
 }

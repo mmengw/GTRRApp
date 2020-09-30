@@ -29,11 +29,9 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-open class newsFeedFragment : Fragment() { //OnNewsItemClickListener
+open class newsFeedFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
-
-//    private var url : String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,26 +40,19 @@ open class newsFeedFragment : Fragment() { //OnNewsItemClickListener
             param2 = it.getString(ARG_PARAM2)
         }
 
+        //RECYCLERVIEW FUNCTION
         recyclerview_newsfeed.layoutManager=LinearLayoutManager(this.context)
         recyclerview_newsfeed.setHasFixedSize(true)
 
         fetchNews()
 
-//        RL_Link.setOnClickListener{
-//            val link = url
-//            val intent = Intent(Intent.ACTION_VIEW)
-//            intent.data= Uri.parse(link)
-//            startActivity(intent)
-//        }
-
     }
 
-//    override fun onItemClick(item: newsItem, position: Int) {
-//
-//    }
-
+    //FETCHING NEWS DATA FROM FIREBASE
     private fun fetchNews(){
         val ref=FirebaseDatabase.getInstance().getReference("/News")
+
+        //GET VALUE FROM FIREBASE OF EACH CHILD
         ref.addListenerForSingleValueEvent(object:ValueEventListener{
             override fun onDataChange(data: DataSnapshot){
                 val adapter = GroupAdapter<ViewHolder>()
@@ -72,6 +63,7 @@ open class newsFeedFragment : Fragment() { //OnNewsItemClickListener
                     }
                 }
 
+                //LONG PRESS ON CARDVIEW FUNCTION
                 adapter.setOnItemClickListener{item, view ->
                     val newsItem = item as NewsItem
 
@@ -107,6 +99,8 @@ open class newsFeedFragment : Fragment() { //OnNewsItemClickListener
             }
     }
 }
+
+//ASSIGN THE VALUE TAKEN FROM FIREBASE AND PLACE IT TO THE RESPECTIVE VIEWS
 class NewsItem(val news:News): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.news_title.text = news.ntitle

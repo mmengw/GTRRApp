@@ -47,22 +47,27 @@ class LogFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
+        //ADD NEW RECYCLELOG BUTTON FUNCTION
         add_new_Logbtn.setOnClickListener{
             val intent = Intent (getActivity(), AddNewRecycleLogActivity::class.java)
             getActivity()?.startActivity(intent)
         }
 
+        //RECYLERVIEW FUNCTION
         recyclerview_logfeed.layoutManager=LinearLayoutManager(this.context)
         recyclerview_logfeed.setHasFixedSize(true)
 
         fetchLog()
     }
 
+    //FETCHING USER LOG FROM FIREBASE
     private fun fetchLog(){
 
         val count = log_record
         val uid = FirebaseAuth.getInstance().uid ?:""
         val ref= FirebaseDatabase.getInstance().getReference("RecycleLog/$uid")
+
+        //GET VALUE FROM FIREBASE OF EACH CHILD
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(data: DataSnapshot){
                 val adapter = GroupAdapter<ViewHolder>()
@@ -77,11 +82,9 @@ class LogFragment : Fragment() {
                 recyclerview_logfeed.adapter = adapter
             }
             override fun onCancelled (error: DatabaseError){
-
             }
         })
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -90,8 +93,6 @@ class LogFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_log, container, false)
     }
-
-
 
     companion object {
         fun newInstance(param1: String, param2: String) =
@@ -103,6 +104,8 @@ class LogFragment : Fragment() {
             }
     }
 }
+
+//ASSIGN THE VALUE TAKEN FROM FIREBASE AND PLACE IT TO THE RESPECTIVE VIEWS
 class RecycleLogItem(val log:RecycleLog): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.recycle_log_title.text = log.rtitle
