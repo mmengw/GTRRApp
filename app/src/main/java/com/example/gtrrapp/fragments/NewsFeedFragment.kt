@@ -106,7 +106,7 @@ class NewsItem(val news:News): Item<ViewHolder>(){
         viewHolder.itemView.news_title.text = news.ntitle
         Picasso.get().load(news.coverImgUrl).into(viewHolder.itemView.news_imageView)
     }
-
+    //FETCH THE CARD VIEW
     override fun getLayout(): Int {
         return R.layout.newsfeed_cardview
     }

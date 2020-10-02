@@ -47,6 +47,7 @@ class AdminAddNews : AppCompatActivity() {
 
     var selectedPhotoUri: Uri? = null
 
+    //UPLOADING SELECTED IMAGE TO FIREBASE STORAGE FUNCTION
     private fun uploadImageToFirebaseStorage(){
         if (selectedPhotoUri == null) return
 
@@ -69,6 +70,7 @@ class AdminAddNews : AppCompatActivity() {
             }
     }
 
+    //SAVING ALL THE DATA TO FIREBASE FUNCTION
     private fun saveNewsToFriebaseDatabase(NewsCoverImageUrl: String){
 
         val title = newsTitle.text.toString()
@@ -91,6 +93,7 @@ class AdminAddNews : AppCompatActivity() {
             }
     }
 
+    //TO CHECK IF IMAGE WAS SELECTED
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -105,6 +108,7 @@ class AdminAddNews : AppCompatActivity() {
     }
 }
 
+//NEWS MODULE
 class News(val newsid: String?, val ntitle:String, val nlink:String, val coverImgUrl:String){
     constructor() : this("","","","")
 }

@@ -13,15 +13,17 @@ class AdminLoginActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_login)
 
+        //LOGIN BUTTON FUNCTION
         admin_loginbtn_Login.setOnClickListener {
             val email = gtrr_email_Login.text.toString()
             val pass = gtrr_password_Login.text.toString()
 
-            //IF EMAIL OR PASSWORD COLUMN IS LEFT BLANK SHOW TOAST
+            //IF EMAIL OR PASSWORD COLUMN IS EMPTY
             if (email.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(this, "Please enter text in Email or Password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            //IF EMAIL IS THE ADMIN EMAIL
             if (email != "gtrradmin@email.com"){
                 Toast.makeText(this, "you're not authorised to access", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -32,6 +34,7 @@ class AdminLoginActivity : AppCompatActivity(){
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email,pass)
 
+                 // IF SUCCESSFUL THAN REDIREC ADMIN TO THE HOME PAGE
                 .addOnCompleteListener{
                     if (it.isSuccessful){
                         Log.d("AdminLogin", "Successfully Login")

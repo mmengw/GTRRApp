@@ -25,33 +25,32 @@ import kotlinx.android.synthetic.main.admin_delete_news_cardview.view.*
 
 class AdminHomeActivity: AppCompatActivity() {
 
-//    private lateinit var newfeedlist:RecyclerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
-//        newfeedlist = findViewById(R.id.recyclerview_adminFeed)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_home)
 
-
-
+        //RECYCLERVIEW LAYOUT
         recyclerview_adminFeed.layoutManager= LinearLayoutManager(this)
         recyclerview_adminFeed.setHasFixedSize(true)
 
         fetchNews()
 
+        //ADD NEWS BUTTON ACTIVITY
         admin_addNews.setOnClickListener {
             val intent = Intent(this, AdminAddNews::class.java)
             startActivity(intent)
         }
     }
 
-
+    //FETCHING NEWS FROM THE FIREBASE DATABASE
     private fun fetchNews(){
         val ref= FirebaseDatabase.getInstance().getReference("/News")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
+
             override fun onDataChange(data: DataSnapshot){
+
+                //FUNCTION TO FETCH ALL THE DATA AVAILABLE FOR THE NEWS IN FIREBASE DATABASE
                 val adapter = GroupAdapter<ViewHolder>()
                 data.children.forEach{
                     val news = it.getValue(News::class.java)
@@ -60,11 +59,15 @@ class AdminHomeActivity: AppCompatActivity() {
                     }
                 }
 
+                //FUNCTION FOR DELETING EACH NEWS DATA WHILE LONG PRESS ON THE CARDVIEW
                 adapter.setOnItemLongClickListener(){item, view ->
                     val adminItems = item as AdminItems
+
+                    //SHOW ALERT DIALOG WHEN LONG PRESS ON THE CARDVIEW
                     val builder = AlertDialog.Builder(this@AdminHomeActivity)
                     builder.setTitle("Are You Sure You Want To Delete This News?")
 
+                    //IF YES WAS SELECTED ON THE DIALOG ALERT
                     builder.setPositiveButton(android.R.string.yes){dialog, id ->
                         val newsID = adminItems.adminNews.newsid
                         ref.child("$newsID").removeValue()
@@ -72,18 +75,17 @@ class AdminHomeActivity: AppCompatActivity() {
                         finish()
                         startActivity(intent)
                     }
+
+                    //IF NO WAS SELECTED ON THE DIALOG ALERT
                     builder.setNegativeButton(android.R.string.no){dialog, id ->
                         dialog.dismiss()
                     }
+
+                    //SHOW THE DIALOG AND ONCE DONE RETURN TO THE HOME PAGE
                     builder.show()
                     return@setOnItemLongClickListener true
 
-                    //val newsID = adminItems.adminNews.newsid
-
-//                    ref.child("$newsID").removeValue()
-
                 }
-
                 recyclerview_adminFeed.adapter = adapter
             }
             override fun onCancelled (error: DatabaseError){
@@ -113,6 +115,8 @@ class AdminHomeActivity: AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 }
+
+//ALLOCATING NEWS DATA VALUE TO ITS CORRESPONDING ITEMVIEW
 class AdminItems(val adminNews:News): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.admin_title.text = adminNews.ntitle

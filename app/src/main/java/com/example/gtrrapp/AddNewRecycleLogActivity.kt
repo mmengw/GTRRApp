@@ -61,6 +61,7 @@ class AddNewRecycleLogActivity : AppCompatActivity(){
         }
     }
 
+    //FUNCTION FOR SAVING RECYCLE LOG INTO THE FIREBASE
     private fun saveRecycleLogToFirebaseDatabase(){
 
         val dateTime = LocalDateTime.now()
@@ -72,11 +73,12 @@ class AddNewRecycleLogActivity : AppCompatActivity(){
         val type = result.text.toString()
         val date = formatter.format(dateTime)
 
+        //TO CHECK IF THESE COLUMN IS EMPTY
         if (title.isEmpty() || des.isEmpty()){
             logTitle.error = "Please enter title and description"
         }
 
-
+        //UPLOAD DATA TO FIREBASE TO THE DESIRED PATH
         val uid = FirebaseAuth.getInstance().uid ?:""
         val ref = FirebaseDatabase.getInstance().getReference("RecycleLog/$uid")
         val logId = ref.push().key
