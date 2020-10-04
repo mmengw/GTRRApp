@@ -9,6 +9,12 @@
         android:id="@+id/ic_Log"
         android:icon="@drawable/ic_log"
         android:title="User Log"/>
+
+    <item
+        android:id="@+id/ic_recycle"
+        android:icon="@drawable/ic_recycle"
+        android:title="Reycling Guide"/>
+
     <item
         android:id="@+id/ic_achievements"
         android:icon="@drawable/ic_achievements"

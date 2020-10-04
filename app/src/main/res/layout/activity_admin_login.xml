@@ -67,6 +67,7 @@
             android:layout_marginTop="31dp"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="130dp"
+            android:paddingBottom="15dp"
             android:background="@drawable/rounded_corner_button"
             android:text="Log In"/>
 

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.gtrr.fragments.newsFeedFragment
 import com.example.gtrrapp.fragments.AchievementsFragment
 import com.example.gtrrapp.fragments.LogFragment
+import com.example.gtrrapp.fragments.RecycleGuideFragment
 import com.example.gtrrapp.fragments.UserFragment
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home.*
@@ -22,6 +23,7 @@ class HomeActivity: AppCompatActivity() {
 
         val newsFeedFragment = newsFeedFragment()
         val logFragment = LogFragment()
+        val recycleGuideFragment = RecycleGuideFragment()
         val achievementsFragment = AchievementsFragment()
         val profileFragment = UserFragment()
 
@@ -31,6 +33,7 @@ class HomeActivity: AppCompatActivity() {
             when (it.itemId){
                 R.id.ic_newsfeed -> makeCurrentFragment(newsFeedFragment)
                 R.id.ic_Log -> makeCurrentFragment(logFragment)
+                R.id.ic_recycle -> makeCurrentFragment(recycleGuideFragment)
                 R.id.ic_achievements -> makeCurrentFragment(achievementsFragment)
                 R.id.ic_user -> makeCurrentFragment(profileFragment)
             }

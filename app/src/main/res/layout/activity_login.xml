@@ -66,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/gtrr_password_Login"
             android:layout_marginTop="31dp"
+            android:layout_marginBottom="10dp"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="130dp"
             android:background="@drawable/rounded_corner_button"
