@@ -9,17 +9,11 @@
 
     <ImageView
         android:id="@+id/img_process"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/analysebtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="31dp"
-        android:text="IMAGE RECOGNITION"
-        android:textStyle="bold"/>
     <TextView
         android:id="@+id/display_result"
         android:layout_width="wrap_content"
@@ -28,6 +22,15 @@
         android:textSize="25dp"
         android:layout_centerHorizontal="true"
         android:text="Result will display here"/>
+
+    <Button
+        android:id="@+id/analysebtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:text="IMAGE RECOGNITION"
+        android:textStyle="bold"/>
 
 
 </RelativeLayout>
