@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+
+        //LOGIN BUTTON FUNCTION
         admin_login.setOnClickListener{
             val intent = Intent(this, AdminLoginActivity::class.java)
             startActivity(intent)

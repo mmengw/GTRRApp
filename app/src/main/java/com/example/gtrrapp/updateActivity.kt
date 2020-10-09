@@ -47,6 +47,7 @@ class UpdateActivity:AppCompatActivity(){
 
     var selectedPhotoUri: Uri? = null
 
+    //FUNCTION TO STORE IMAGE TO FIREBASE
     private fun uploadImageToFirebaseStrorage(){
         if (selectedPhotoUri == null) return
 
@@ -83,7 +84,6 @@ class UpdateActivity:AppCompatActivity(){
                 val user=User(uid, update_userName.text.toString() , profileImageUrl, dob, email, gender, user_bio.text.toString())
                 ref.setValue(user)
             }
-
             override fun onCancelled(error: DatabaseError) {
 
             }

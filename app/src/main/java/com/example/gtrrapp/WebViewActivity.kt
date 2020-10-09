@@ -10,21 +10,16 @@ import androidx.appcompat.app.AppCompatActivity
 
 class WebViewActivity:AppCompatActivity (){
 
-    //private var url:TextView? = null
-    //private var webView:WebView? =null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 
-        //url=findViewById(R.id.display_link)
         val MyWebView: WebView=findViewById(R.id.display_web)
-
-
         val intent = getIntent()
-        val link = intent.getStringExtra("NEWS_KEY")
+        val link = intent.getStringExtra("NEWS_KEY")                                    //RETRIEVE NEWS KEY FROM HOME ACTIVITY
 
+        //LOAD URL TO WEBVIEW
         MyWebView.webViewClient = object : WebViewClient(){
             override fun shouldOverrideUrlLoading(view: WebView?, url:String?): Boolean {
                 view?.loadUrl(url)

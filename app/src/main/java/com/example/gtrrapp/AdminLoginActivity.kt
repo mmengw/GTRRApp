@@ -34,7 +34,7 @@ class AdminLoginActivity : AppCompatActivity(){
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email,pass)
 
-                 // IF SUCCESSFUL THAN REDIREC ADMIN TO THE HOME PAGE
+                 // IF SUCCESSFUL THAN REDIRECT ADMIN TO THE HOME PAGE
                 .addOnCompleteListener{
                     if (it.isSuccessful){
                         Log.d("AdminLogin", "Successfully Login")

@@ -21,6 +21,7 @@ class HomeActivity: AppCompatActivity() {
 
         verifyUserIsLoggedIn()
 
+        //BOTTOM NAVIGATION BUTTONS VARIABLES
         val newsFeedFragment = newsFeedFragment()
         val logFragment = LogFragment()
         val recycleGuideFragment = RecycleGuideFragment()
@@ -29,11 +30,12 @@ class HomeActivity: AppCompatActivity() {
 
         makeCurrentFragment(newsFeedFragment)
 
+        //NAVIGATION BUTTON FUNCTION
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.ic_newsfeed -> makeCurrentFragment(newsFeedFragment)
                 R.id.ic_Log -> makeCurrentFragment(logFragment)
-                R.id.ic_recycle -> makeCurrentFragment(recycleGuideFragment)
+                //R.id.ic_recycle -> makeCurrentFragment(recycleGuideFragment)
                 R.id.ic_achievements -> makeCurrentFragment(achievementsFragment)
                 R.id.ic_user -> makeCurrentFragment(profileFragment)
             }
@@ -41,7 +43,7 @@ class HomeActivity: AppCompatActivity() {
         }
     }
 
-    //TO CHECK IF THE USER HAVE BEEN AUTHENTICATED
+    //TO CHECK IF THE USER HAS BEEN AUTHENTICATED
     private fun verifyUserIsLoggedIn(){
         val uid = FirebaseAuth.getInstance().uid
         if (uid == null) {
@@ -52,7 +54,7 @@ class HomeActivity: AppCompatActivity() {
     }
 
 
-    //FUNCTION FOR LOGOUT
+    //FUNCTION FOR LOGOUT BUTTON
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if(id == R.id.menu_LogOut){
