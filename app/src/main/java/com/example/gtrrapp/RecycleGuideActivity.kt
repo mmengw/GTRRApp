@@ -3,9 +3,11 @@ package com.example.gtrrapp
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
@@ -22,8 +24,10 @@ import edmt.dev.edmtdevcognitivevision.VisionServiceRestClient
 import kotlinx.android.synthetic.main.activity_recycle_guide.*
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.io.InputStream
 import java.lang.NullPointerException
+import java.util.Collections.rotate
 
 class RecycleGuideActivity:AppCompatActivity() {
 
@@ -46,6 +50,7 @@ class RecycleGuideActivity:AppCompatActivity() {
         select_image.setOnClickListener{
             pickImage()
         }
+
         option = findViewById(R.id.MaterialType) as Spinner
 
         val options = arrayOf("plastic","Glass","Metal","Paper","Wood","Oil")
@@ -69,6 +74,7 @@ class RecycleGuideActivity:AppCompatActivity() {
 
             }
         }
+
         ManualSrh.setOnClickListener{
             MaterialType.visibility=View.VISIBLE
         }
@@ -79,63 +85,94 @@ class RecycleGuideActivity:AppCompatActivity() {
             when(requestCode){
                 IMAGE_PICK_CODE ->{
                     val bitmap = getImageFromData(data)
-                    bitmap.apply{
-                        img_process.setImageBitmap(this)
+                    val resizeBitmap = Bitmap.createScaledBitmap(bitmap!!,640,481,false)
+                    bitmap?.apply{
+                        img_process.setImageBitmap(rotate(seekBar.progress.toFloat()))
                         val outputStream = ByteArrayOutputStream()
-                        bitmap?.compress(Bitmap.CompressFormat.JPEG,100,outputStream)
+                        bitmap?.compress(Bitmap.CompressFormat.JPEG,50,outputStream)
                         val inputStream = ByteArrayInputStream(outputStream.toByteArray())
-                            if (bitmap != null){
-                                val onClickListener: Any = analysebtn.setOnClickListener {
-                                    val visionTask = @SuppressLint("StaticFieldLeak")
-                                    object : AsyncTask<InputStream, String, String>() {
-                                        var progressDialog = ProgressDialog(this@RecycleGuideActivity)
+                        if (bitmap != null){
 
-                                        override fun onPreExecute() {
-                                            progressDialog.show()
-                                        }
-
-                                        override fun onProgressUpdate(vararg values: String?) {
-                                            progressDialog.setMessage(values[0])
-                                        }
-
-                                        @SuppressLint("StaticFieldLeak")
-                                        override fun doInBackground(vararg params: InputStream?): String {
-                                            try {
-                                                publishProgress("Recognising Image...")
-                                                val features = arrayOf("Description")
-                                                val details = arrayOf<String>()
-
-                                                val result = visionServiceClient.analyzeImage(params[0], features, details)
-
-                                                return Gson().toJson(result)
-                                            } catch (e: Exception) {
-                                                if (e is NullPointerException){
-                                                    throw NoSuchElementException("No drawable on given view")
-                                                }
-                                                return ""
-                                            }
-                                        }
-
-                                        override fun onPostExecute(result: String?) {
-                                            progressDialog.dismiss()
-
-                                            val result = Gson().fromJson<AnalysisResult>(result, AnalysisResult::class.java)
-                                            val result_text = StringBuilder()
-                                            for (caption in result.description.captions)
-                                                result_text.append(caption.text)
-                                                val recResult = result_text.toString()
-                                                display_result.text = "Click Here To View Guide"
-                                                display_result.setOnClickListener(){
-                                                val intent = Intent(this@RecycleGuideActivity,WebViewGuideActivity::class.java)
-                                                intent.putExtra("GUIDE_KEY", "https://www.google.com/search?q=how+to+recycle+$recResult&rlz=1C1CHBF_enMY893MY893&oq=how+to+recycle+$recResult&aqs=chrome..69i57j0i22i30l7.8230j0j7&sourceid=chrome&ie=UTF-8")
-                                                startActivity(intent)
-                                            }
-                                        }
-
-                                    }
-                                    visionTask.execute(inputStream)
+                            rotatebtn.setOnClickListener{
+                                if(seekBar.progress > 360) {
+                                    seekBar.progress = 360
+                                    return@setOnClickListener
                                 }
+                                if (seekBar.progress == 270) {
+                                    seekBar.progress = 0
+                                    // you can show notification that you are reach limit
+                                    return@setOnClickListener
+                                }
+                                seekBar.progress = seekBar.progress + 90
                             }
+                            // rotate bitmap on seek bar change
+                            seekBar.setOnSeekBarChangeListener(
+                                object: SeekBar.OnSeekBarChangeListener{
+                                    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                                        // show rotated bitmap in second image view
+                                        img_process.setImageBitmap(rotate(progress.toFloat()))
+                                    }
+
+                                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                                    }
+
+                                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                                    }
+                                })
+
+
+                            val onClickListener: Any = analysebtn.setOnClickListener {
+                                val visionTask = @SuppressLint("StaticFieldLeak")
+                                object : AsyncTask<InputStream, String, String>() {
+                                    var progressDialog = ProgressDialog(this@RecycleGuideActivity)
+
+                                    override fun onPreExecute() {
+                                        progressDialog.show()
+                                    }
+
+                                    override fun onProgressUpdate(vararg values: String?) {
+                                        progressDialog.setMessage(values[0])
+                                    }
+
+                                    @SuppressLint("StaticFieldLeak")
+                                    override fun doInBackground(vararg params: InputStream?): String {
+                                        try {
+                                            publishProgress("Recognising Image...")
+                                            val features = arrayOf("Description")
+                                            val details = arrayOf<String>()
+
+                                            val result = visionServiceClient.analyzeImage(params[0], features, details)
+
+                                            return Gson().toJson(result)
+                                        } catch (e: Exception) {
+                                            if (e is NullPointerException){
+                                                throw NoSuchElementException("No drawable on given view")
+                                            }
+                                            return ""
+                                        }
+                                    }
+
+                                    override fun onPostExecute(result: String?) {
+                                        progressDialog.dismiss()
+
+                                        val result = Gson().fromJson<AnalysisResult>(result, AnalysisResult::class.java)
+                                        val result_text = StringBuilder()
+
+                                        for (caption in result.description.captions)
+                                            result_text.append(caption.text)
+                                        val recResult = result_text.toString()
+                                        display_result.text = "Click Here To View Guide"
+                                        display_result.setOnClickListener(){
+                                            val intent = Intent(this@RecycleGuideActivity,WebViewGuideActivity::class.java)
+                                            intent.putExtra("GUIDE_KEY", "https://www.google.com/search?q=how+to+recycle+$recResult&rlz=1C1CHBF_enMY893MY893&oq=how+to+recycle+$recResult&aqs=chrome..69i57j0i22i30l7.8230j0j7&sourceid=chrome&ie=UTF-8")
+                                            startActivity(intent)
+                                        }
+                                    }
+
+                                }
+                                visionTask.execute(inputStream)
+                            }
+                        }
                     }
                 }
             }
@@ -157,4 +194,33 @@ class RecycleGuideActivity:AppCompatActivity() {
         }
         startActivityForResult(Intent.createChooser(intent, "'Select Image"),IMAGE_PICK_CODE)
     }
+}
+
+// extension function to get bitmap from assets
+fun Context.assetsToBitmap(fileName:String):Bitmap?{
+    return try {
+        val stream = assets.open(fileName)
+        BitmapFactory.decodeStream(stream)
+    } catch (e: IOException) {
+        e.printStackTrace()
+        null
+    }
+}
+
+
+// extension function to rotate bitmap
+fun Bitmap.rotate(degrees:Float = 180F): Bitmap?{
+    val matrix = Matrix()
+    matrix.postRotate(degrees)
+
+    return Bitmap.createBitmap(
+        this, // source bitmap
+        0, // x coordinate of the first pixel in source
+        0, // y coordinate of the first pixel in source
+        width, // The number of pixels in each row
+        height, // The number of rows
+        matrix, // Optional matrix to be applied to the pixels
+        false // true if the source should be filtered
+    )
+
 }

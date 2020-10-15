@@ -158,16 +158,17 @@
             android:layout_height="52dp"
             android:layout_below="@+id/gtrrPassword"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
             android:textColor="#ffffff"
             android:layout_marginTop="30dp"
             android:background="@drawable/rounded_corner_button"
             android:text="REGISTER"
             android:textStyle="bold" />
+
         <EditText
             android:id="@+id/register_bio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/registerbtn"
             android:inputType="text"
             android:visibility="invisible"/>
 

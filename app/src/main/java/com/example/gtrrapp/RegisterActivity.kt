@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_register.register_email
 import kotlinx.android.synthetic.main.activity_register.register_photobtn
 import kotlinx.android.synthetic.main.activity_register.register_userName
 import kotlinx.android.synthetic.main.activity_update_settings.*
+import kotlinx.android.synthetic.main.fragment_user.*
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -49,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
 
             //IF EMAIL OR PASSWORD COLUMN IS LEFT BLANK SHOW TOAST
             if (email.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(this, "Please enter text in Email or Password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please Fill In Every Column", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
