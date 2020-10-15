@@ -64,8 +64,18 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
 
-    //implementation (group = "com.microsoft.azure.cognitiveservices", name = "azure-cognitiveservices-computervision", version = "1.0.4-beta")
-    //implementation "com.microsoft.projectoxford:vision:1.0.395"
+
     implementation 'com.github.eddydn:EDMTDevCognitiveVision:1.3'
     implementation 'com.google.code.gson:gson:2.8.5'
+    
+
+    //FIREBASE ML KIT FOR IMAGE LABELING
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
+    implementation 'com.google.firebase:firebase-ml-vision-image-label-model:20.0.1'
+    //FIREBASE ML KIT FOR OBJECT DETECTION
+    implementation 'com.google.mlkit:object-detection:16.2.1'
+
+    //FLOATING ACTION BUTTON
+    implementation 'com.google.android.material:material:<version>'
+    implementation 'com.google.android.material:material:1.3.0-alpha03'
 }

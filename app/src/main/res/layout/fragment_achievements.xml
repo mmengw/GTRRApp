@@ -15,14 +15,14 @@
         android:layout_centerVertical="true"
         android:layout_margin="20dp">
         <TableRow>
-            <Button
+            <ImageView
                 android:id="@+id/Plasticbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_soda"
                 android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="30dp"/>
-            <Button
+            <ImageView
                 android:id="@+id/Glass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,14 +45,14 @@
                 android:text="Glass" />
         </TableRow>
         <TableRow>
-            <Button
+            <ImageView
                 android:id="@+id/Metal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_password"
                 android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="30dp"/>
-            <Button
+            <ImageView
                 android:id="@+id/Paper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,14 +75,14 @@
                 android:text="Paper" />
         </TableRow>
         <TableRow>
-            <Button
+            <ImageView
                 android:id="@+id/Wood"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_password"
                 android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="30dp"/>
-            <Button
+            <ImageView
                 android:id="@+id/Oil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

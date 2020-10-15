@@ -84,7 +84,6 @@
             android:layout_marginTop="50dp"
             android:background="@drawable/rounded_corner_button"
             android:paddingHorizontal="20dp"
-            android:paddingBottom="15dp"
             android:text="Upload News"
             android:textStyle="bold" />
 

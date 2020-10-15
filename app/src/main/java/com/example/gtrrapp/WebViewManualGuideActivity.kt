@@ -1,23 +1,24 @@
 package com.example.gtrrapp
 
-import android.content.Intent
 import android.os.Bundle
-import android.webkit.WebResourceRequest
+import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class WebViewActivity:AppCompatActivity (){
-
+class WebViewManualGuideActivity:AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 
-        val MyWebView: WebView=findViewById(R.id.display_web)
+        val MyWebView: WebView =findViewById(R.id.display_web)
         val intent = getIntent()
-        val link = intent.getStringExtra("NEWS_KEY")//RETRIEVE NEWS KEY FROM HOME ACTIVITY
+        val link = intent.getStringExtra("MGUIDE_KEY")
 
         //LOAD URL TO WEBVIEW
         MyWebView.webViewClient = object : WebViewClient(){
@@ -32,5 +33,7 @@ class WebViewActivity:AppCompatActivity (){
         MyWebView.settings.domStorageEnabled=true
         MyWebView.settings.useWideViewPort=true
         MyWebView.settings.setAppCacheEnabled(true)
+
+
     }
 }

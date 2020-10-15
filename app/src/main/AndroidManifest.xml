@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity">
+
+        <activity android:name=".HomeActivity"
+            android:theme="@style/actionbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -59,11 +61,28 @@
             android:windowSoftInputMode="adjustResize">
 
         </activity>
+        <activity android:name=".RecycleGuideActivity"
+            android:label="Recycle Guide">
+
+        </activity>
         <activity android:name=".WebViewActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity"/>
         </activity>
+        <activity android:name=".WebViewManualGuideActivity"
+            android:label="Search Result">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RecycleGuideActivity"/>
+        </activity>
+        <activity android:name=".WebViewGuideActivity"
+            android:label="Search Result">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RecycleGuideActivity"/>
+        </activity>
+
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>

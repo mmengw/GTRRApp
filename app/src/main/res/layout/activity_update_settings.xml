@@ -66,7 +66,6 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/rounded_corner_button"
             android:text="Update"
-            android:paddingBottom="15dp"
             android:textStyle="bold" />
 
     </RelativeLayout>

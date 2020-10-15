@@ -92,7 +92,6 @@
             android:layout_centerHorizontal="true"
             android:textColor="#ffffff"
             android:layout_marginTop="30dp"
-            android:paddingBottom="15dp"
             android:background="@drawable/rounded_corner_button"
             android:text="Update"
             android:textStyle="bold" />
