@@ -1,16 +1,19 @@
 package com.example.gtrrapp.fragments
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.gtrrapp.HomeActivity
-import com.example.gtrrapp.LoginActivity
-import com.example.gtrrapp.PlasticFactActivity
-import com.example.gtrrapp.R
-import kotlinx.android.synthetic.main.activity_plastic.*
+import com.example.gtrrapp.*
+import com.example.gtrrapp.facts.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_achievements.*
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,6 +36,64 @@ class AchievementsFragment : Fragment() {
             val intent = Intent (getActivity(), PlasticFactActivity::class.java)
             getActivity()?.startActivity(intent)
         }
+        fetchRType()
+    }
+
+    private fun fetchRType(){
+        val uid = FirebaseAuth.getInstance().uid ?:""
+        val ref= FirebaseDatabase.getInstance().getReference("RecycleLog/$uid")
+
+        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(data: DataSnapshot){
+                data.children.forEach{
+                    val log = it.getValue(RecycleLog::class.java)
+                    val type = log?.rtype
+                    if ( type == "Glass"){
+                        val bitmap = BitmapFactory.decodeResource(resources,R.drawable.glass)
+                        Glassbtn.setImageBitmap(bitmap)
+                        Glassbtn.setOnClickListener{
+                            val intent = Intent (getActivity(), GlassFactActivity::class.java)
+                            getActivity()?.startActivity(intent)
+                        }
+                    }
+                    if ( type == "Metal"){
+                        val bitmap = BitmapFactory.decodeResource(resources,R.drawable.metal)
+                        Metalbtn.setImageBitmap(bitmap)
+                        Metalbtn.setOnClickListener{
+                            val intent = Intent (getActivity(), MetalFactActivity::class.java)
+                            getActivity()?.startActivity(intent)
+                        }
+                    }
+                    if ( type == "Paper"){
+                        val bitmap = BitmapFactory.decodeResource(resources,R.drawable.paper)
+                        Paperbtn.setImageBitmap(bitmap)
+                        Paperbtn.setOnClickListener{
+                            val intent = Intent (getActivity(), PaperFactActivity::class.java)
+                            getActivity()?.startActivity(intent)
+                        }
+                    }
+                    if ( type == "Wood"){
+                        val bitmap = BitmapFactory.decodeResource(resources,R.drawable.wood)
+                        Woodbtn.setImageBitmap(bitmap)
+                        Woodbtn.setOnClickListener{
+                            val intent = Intent (getActivity(), woodFactActivity::class.java)
+                            getActivity()?.startActivity(intent)
+                        }
+                    }
+                    if ( type == "Oil"){
+                        val bitmap = BitmapFactory.decodeResource(resources,R.drawable.oil)
+                        Oilbtn.setImageBitmap(bitmap)
+                        Oilbtn.setOnClickListener{
+                            val intent = Intent (getActivity(), OilFactActivity::class.java)
+                            getActivity()?.startActivity(intent)
+                        }
+                    }
+                }
+            }
+            override fun onCancelled (error: DatabaseError){
+            }
+        })
+
     }
 
     override fun onCreateView(
@@ -54,3 +115,4 @@ class AchievementsFragment : Fragment() {
             }
     }
 }
+

@@ -71,12 +71,13 @@ class LogFragment : Fragment() {
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(data: DataSnapshot){
                 val adapter = GroupAdapter<ViewHolder>()
+
                 data.children.forEach{
                     val log = it.getValue(RecycleLog::class.java)
                     if (log != null){
                         adapter.add(RecycleLogItem(log))
-                        val chilren = data.childrenCount
-                        count.setText(chilren.toString())
+                        val child = data.childrenCount
+                        count.setText(child.toString())
                     }
                 }
                 recyclerview_logfeed.adapter = adapter

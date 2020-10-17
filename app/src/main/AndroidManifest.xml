@@ -42,10 +42,6 @@
             android:windowSoftInputMode="adjustResize">
 
         </activity>
-        <activity android:name=".PlasticFactActivity"
-            android:label="Plastic Facts">
-
-        </activity>
         <activity android:name=".AdminHomeActivity"
             android:label="Admin">
 
@@ -63,6 +59,30 @@
         </activity>
         <activity android:name=".RecycleGuideActivity"
             android:label="Recycle Guide">
+
+        </activity>
+        <activity android:name=".facts.PlasticFactActivity"
+            android:label="Plastic Facts">
+
+        </activity>
+        <activity android:name=".facts.GlassFactActivity"
+            android:label="Glass Facts">
+
+        </activity>
+        <activity android:name=".facts.MetalFactActivity"
+            android:label="Glass Facts">
+
+        </activity>
+        <activity android:name=".facts.PaperFactActivity"
+            android:label="Glass Facts">
+
+        </activity>
+        <activity android:name=".facts.woodFactActivity"
+            android:label="Glass Facts">
+
+        </activity>
+        <activity android:name=".facts.OilFactActivity"
+            android:label="Glass Facts">
 
         </activity>
         <activity android:name=".WebViewActivity">

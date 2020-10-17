@@ -76,7 +76,8 @@
                 android:id="@+id/register_genderMaleBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Male" />
+                android:text="Male"
+                android:checked="true"/>
 
             <RadioButton
                 android:id="@+id/register_genderFemaleBtn"

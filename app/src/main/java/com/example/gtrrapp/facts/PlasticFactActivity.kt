@@ -1,15 +1,9 @@
-package com.example.gtrrapp
+package com.example.gtrrapp.facts
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_plastic.*
-import kotlinx.android.synthetic.main.activity_userprofile.*
-import kotlinx.android.synthetic.main.fragment_user.*
+import com.example.gtrrapp.R
+import kotlinx.android.synthetic.main.activity_facts.*
 
 
 class PlasticFactActivity : AppCompatActivity () {
@@ -21,7 +15,7 @@ class PlasticFactActivity : AppCompatActivity () {
         R.drawable.plastic
     )
 
-    var cities = arrayOf(
+    var plastics = arrayOf(
         "Plastic 1",
         "Plastic 2",
         "Plastic 3"
@@ -29,9 +23,9 @@ class PlasticFactActivity : AppCompatActivity () {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_plastic)
+        setContentView(R.layout.activity_facts)
 
-        Plastic_carousel.pageCount = cities.size
+        Plastic_carousel.pageCount = plastics.size
 
         Plastic_carousel.setImageListener{ position, imageView ->
             imageView.setImageResource(sampleImages[position])
@@ -39,6 +33,7 @@ class PlasticFactActivity : AppCompatActivity () {
         Plastic_carousel.setImageClickListener{position ->
 
         }
+        TextFact.text = "One recycled plastics bottle is able to save enough energy to power up to 60W light bulb for 6 hours"
 
     }
 }

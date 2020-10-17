@@ -47,9 +47,10 @@ class RegisterActivity : AppCompatActivity() {
         registerbtn.setOnClickListener {
             val email = register_email.text.toString()
             val pass = gtrrPassword.text.toString()
+            val dob = register_DOB.text.toString()
 
             //IF EMAIL OR PASSWORD COLUMN IS LEFT BLANK SHOW TOAST
-            if (email.isEmpty() || pass.isEmpty()) {
+            if (email.isEmpty() || pass.isEmpty() || dob.isEmpty()) {
                 Toast.makeText(this, "Please Fill In Every Column", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
