@@ -1,4 +1,4 @@
-package com.example.gtrrapp
+package com.example.gtrrapp.admin
 
 import android.app.Activity
 import android.content.Intent
@@ -8,7 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
+import com.example.gtrrapp.R
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_admin_addnews.*

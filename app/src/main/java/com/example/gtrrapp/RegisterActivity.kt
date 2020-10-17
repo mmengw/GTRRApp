@@ -147,4 +147,6 @@ class RegisterActivity : AppCompatActivity() {
 }
 
 //CREATING A USER CLASS TO IDENTIFY WHAT TO STORE IN THE DATABASE
-class User(val uid:String, val username:String, val profileImageUrl: String, val DOB:String, val email:String, val gender:String, val bio:String)
+class User(val uid:String, val username:String, val profileImageUrl: String, val DOB:String, val email:String, val gender:String, val bio:String){
+    constructor() : this("","","","","","","")
+}

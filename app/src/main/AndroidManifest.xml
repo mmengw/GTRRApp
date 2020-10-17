@@ -31,7 +31,6 @@
         <activity android:name=".RegisterActivity"
             android:label="Register Account"
             android:windowSoftInputMode="adjustResize">
-
         </activity>
         <activity android:name=".UpdateActivity"
             android:label="User Account Setting"
@@ -40,51 +39,49 @@
         <activity android:name=".AddNewRecycleLogActivity"
             android:label="Add New Recycle Log"
             android:windowSoftInputMode="adjustResize">
-
         </activity>
-        <activity android:name=".AdminHomeActivity"
+        <activity android:name=".RecycleGuideActivity"
+            android:label="Recycle Guide">
+        </activity>
+
+        <!--ADMIN ACTIVITY-->
+        <activity android:name=".admin.AdminHomeActivity"
             android:label="Admin">
-
         </activity>
-        <activity android:name=".AdminAddNews"
+        <activity android:name=".admin.AdminAddNews"
             android:label="Add Recycling News"
             android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AdminHomeActivity"/>
+                android:value=".admin.AdminHomeActivity"/>
         </activity>
-        <activity android:name=".AdminLoginActivity"
+        <activity android:name=".admin.AdminLoginActivity"
             android:windowSoftInputMode="adjustResize">
-
         </activity>
-        <activity android:name=".RecycleGuideActivity"
-            android:label="Recycle Guide">
-
+        <activity android:name=".admin.AdminAnalytics">
         </activity>
+
+        <!--FACTS ACTIVITY-->
         <activity android:name=".facts.PlasticFactActivity"
             android:label="Plastic Facts">
-
         </activity>
         <activity android:name=".facts.GlassFactActivity"
             android:label="Glass Facts">
-
         </activity>
         <activity android:name=".facts.MetalFactActivity"
             android:label="Glass Facts">
-
         </activity>
         <activity android:name=".facts.PaperFactActivity"
             android:label="Glass Facts">
-
         </activity>
         <activity android:name=".facts.woodFactActivity"
             android:label="Glass Facts">
-
         </activity>
         <activity android:name=".facts.OilFactActivity"
             android:label="Glass Facts">
-
         </activity>
+
+        <!--WEBVIEW ACTIVITY -->
         <activity android:name=".WebViewActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

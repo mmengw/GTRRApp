@@ -1,16 +1,14 @@
-package com.example.gtrrapp
+package com.example.gtrrapp.admin
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.gtrr.fragments.NewsItem
-import com.google.android.material.internal.ContextUtils.getActivity
+import com.example.gtrrapp.MainActivity
+import com.example.gtrrapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -95,10 +93,18 @@ class AdminHomeActivity: AppCompatActivity() {
     }
 
 
-    //FUNCTION FOR LOGOUT
+    //FUNCTION FOR MENU NAVIGATION
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
-            R.id.menu_LogOut->{
+            R.id.menu_Home ->{
+                val intent = Intent (this, AdminHomeActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.menu_Analytics ->{
+                val intent = Intent (this, AdminAnalytics::class.java)
+                startActivity(intent)
+            }
+            R.id.menu_LogOut ->{
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent (this, MainActivity::class.java)
                 intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -117,7 +123,7 @@ class AdminHomeActivity: AppCompatActivity() {
 }
 
 //ALLOCATING NEWS DATA VALUE TO ITS CORRESPONDING ITEMVIEW
-class AdminItems(val adminNews:News): Item<ViewHolder>(){
+class AdminItems(val adminNews: News): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.admin_title.text = adminNews.ntitle
         Picasso.get().load(adminNews.coverImgUrl).into(viewHolder.itemView.admin_imageView)
