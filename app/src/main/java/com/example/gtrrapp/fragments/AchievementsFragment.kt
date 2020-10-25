@@ -1,5 +1,6 @@
 package com.example.gtrrapp.fragments
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -7,7 +8,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.gtrrapp.*
+import com.example.gtrrapp.admin.AdminHomeActivity
 import com.example.gtrrapp.facts.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -36,6 +40,48 @@ class AchievementsFragment : Fragment() {
             val intent = Intent (getActivity(), PlasticFactActivity::class.java)
             getActivity()?.startActivity(intent)
         }
+            val builder = AlertDialog.Builder(activity!!)
+            builder.setTitle("To unlock this achievement you have to recycle this material")
+            Glassbtn.setOnClickListener{
+                //IF YES WAS SELECTED ON THE DIALOG ALERT
+                builder.setPositiveButton("OK"){dialog, id ->
+                    dialog.dismiss()
+                }
+                //SHOW THE DIALOG AND ONCE DONE RETURN TO THE HOME PAGE
+                builder.show()
+            }
+            Metalbtn.setOnClickListener{
+                //IF YES WAS SELECTED ON THE DIALOG ALERT
+                builder.setPositiveButton("OK"){dialog, id ->
+                    dialog.dismiss()
+                }
+                //SHOW THE DIALOG AND ONCE DONE RETURN TO THE HOME PAGE
+                builder.show()
+            }
+            Paperbtn.setOnClickListener{
+                //IF YES WAS SELECTED ON THE DIALOG ALERT
+                builder.setPositiveButton("OK"){dialog, id ->
+                    dialog.dismiss()
+                }
+                //SHOW THE DIALOG AND ONCE DONE RETURN TO THE HOME PAGE
+                builder.show()
+            }
+            Woodbtn.setOnClickListener{
+                //IF YES WAS SELECTED ON THE DIALOG ALERT
+                builder.setPositiveButton("OK"){dialog, id ->
+                    dialog.dismiss()
+                }
+                //SHOW THE DIALOG AND ONCE DONE RETURN TO THE HOME PAGE
+                builder.show()
+            }
+            Oilbtn.setOnClickListener{
+                //IF YES WAS SELECTED ON THE DIALOG ALERT
+                builder.setPositiveButton("OK"){dialog, id ->
+                    dialog.dismiss()
+                }
+                //SHOW THE DIALOG AND ONCE DONE RETURN TO THE HOME PAGE
+                builder.show()
+            }
         fetchRType()
     }
 
@@ -55,32 +101,28 @@ class AchievementsFragment : Fragment() {
                             val intent = Intent (getActivity(), GlassFactActivity::class.java)
                             getActivity()?.startActivity(intent)
                         }
-                    }
-                    if ( type == "Metal"){
+                    }else if ( type == "Metal"){
                         val bitmap = BitmapFactory.decodeResource(resources,R.drawable.metal)
                         Metalbtn.setImageBitmap(bitmap)
                         Metalbtn.setOnClickListener{
                             val intent = Intent (getActivity(), MetalFactActivity::class.java)
                             getActivity()?.startActivity(intent)
                         }
-                    }
-                    if ( type == "Paper"){
+                    }else if ( type == "Paper"){
                         val bitmap = BitmapFactory.decodeResource(resources,R.drawable.paper)
                         Paperbtn.setImageBitmap(bitmap)
                         Paperbtn.setOnClickListener{
                             val intent = Intent (getActivity(), PaperFactActivity::class.java)
                             getActivity()?.startActivity(intent)
                         }
-                    }
-                    if ( type == "Wood"){
+                    }else if ( type == "Wood"){
                         val bitmap = BitmapFactory.decodeResource(resources,R.drawable.wood)
                         Woodbtn.setImageBitmap(bitmap)
                         Woodbtn.setOnClickListener{
                             val intent = Intent (getActivity(), woodFactActivity::class.java)
                             getActivity()?.startActivity(intent)
                         }
-                    }
-                    if ( type == "Oil"){
+                    }else if ( type == "Oil"){
                         val bitmap = BitmapFactory.decodeResource(resources,R.drawable.oil)
                         Oilbtn.setImageBitmap(bitmap)
                         Oilbtn.setOnClickListener{

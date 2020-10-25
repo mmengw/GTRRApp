@@ -19,6 +19,11 @@ class LoginActivity: AppCompatActivity(){
             val email = gtrr_email_Login.text.toString()
             val pass = gtrr_password_Login.text.toString()
 
+            if(email.isEmpty() || pass.isEmpty()){
+                Toast.makeText(this, "Please Enter Your Email and Password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             //DISPLAY ACTION IN LOGCAT
             Log.d("LoginActivity","Attempt login with email/pw: $email/***")
 

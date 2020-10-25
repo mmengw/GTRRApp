@@ -55,11 +55,26 @@ class AddNewRecycleLogActivity : AppCompatActivity(){
 
         //ACTION FOR THE UPDATE BUTTON
         updateButton.setOnClickListener {
-            saveRecycleLogToFirebaseDatabase()
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+
+            val title = logTitle.text.toString()
+            val des = logDes.text.toString()
+
+            //TO CHECK IF THESE COLUMN IS EMPTY
+            if (title.isEmpty()) {
+                logTitle.error = "Please enter a log title"
+                return@setOnClickListener
+            }else if (des.isEmpty()){
+                logDes.error = "Please enter a log description"
+                return@setOnClickListener
+            }else{
+                saveRecycleLogToFirebaseDatabase()
+                Toast.makeText(this, "Successfully Uploaded Recycling Log", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
+
 
     //FUNCTION FOR SAVING RECYCLE LOG INTO THE FIREBASE
     private fun saveRecycleLogToFirebaseDatabase(){
@@ -73,10 +88,6 @@ class AddNewRecycleLogActivity : AppCompatActivity(){
         val type = result.text.toString()
         val date = formatter.format(dateTime)
 
-        //TO CHECK IF THESE COLUMN IS EMPTY
-        if (title.isEmpty() || des.isEmpty()){
-            logTitle.error = "Please enter title and description"
-        }
 
         //UPLOAD DATA TO FIREBASE TO THE DESIRED PATH
         val uid = FirebaseAuth.getInstance().uid ?:""

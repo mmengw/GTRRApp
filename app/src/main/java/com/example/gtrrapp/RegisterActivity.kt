@@ -3,6 +3,8 @@ package com.example.gtrrapp
 import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
+import android.icu.util.LocaleData
+import android.net.MailTo.parse
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -12,6 +14,7 @@ import android.widget.DatePicker
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintAttribute.parse
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -24,7 +27,16 @@ import kotlinx.android.synthetic.main.activity_register.register_photobtn
 import kotlinx.android.synthetic.main.activity_register.register_userName
 import kotlinx.android.synthetic.main.activity_update_settings.*
 import kotlinx.android.synthetic.main.fragment_user.*
+import okhttp3.HttpUrl.parse
+import java.net.HttpCookie.parse
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.time.Duration.parse
+import java.time.Instant.parse
 import java.util.*
+import java.util.Date.parse
+import java.util.Locale.LanguageRange.parse
+import java.util.logging.Level.parse
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -47,12 +59,20 @@ class RegisterActivity : AppCompatActivity() {
         registerbtn.setOnClickListener {
             val email = register_email.text.toString()
             val pass = gtrrPassword.text.toString()
-            val dob = register_DOB.text.toString()
+            val username = register_userName.text.toString()
 
             //IF EMAIL OR PASSWORD COLUMN IS LEFT BLANK SHOW TOAST
-            if (email.isEmpty() || pass.isEmpty() || dob.isEmpty()) {
-                Toast.makeText(this, "Please Fill In Every Column", Toast.LENGTH_SHORT).show()
+            if (email.isEmpty() || pass.isEmpty() || username.isEmpty()) {
+                Toast.makeText(this, "Please Do Not Leave Any Column Blank", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
+            }
+
+            //STORE SELECTED IMAGE TO FIREBASE
+            if (selectedPhotoUri == null){
+                Toast.makeText(this, "Please Select a Profile Image", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }else {
+                uploadImageToFirebaseStrorage()
             }
 
             Log.d("RegisterActivity", "Email is:" + email)
@@ -64,15 +84,12 @@ class RegisterActivity : AppCompatActivity() {
                 .addOnCompleteListener {
                     //IF NOT SUCCESSFUL
                     if(!it.isSuccessful)
-                        Toast.makeText(this, "Failed to register Please try Again", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Failed to register Please try Again", Toast.LENGTH_LONG).show()
                     if (!it.isSuccessful) return@addOnCompleteListener
 
                     //ELSE IF SUCCESSFUL
                     Log.d("RegisterActivity", "Successfully created user with uid: ${it?.result?.user?.uid}")
                     Toast.makeText(this, "Successfully Registered a New User Account", Toast.LENGTH_SHORT).show()
-
-                    //STORE SELECTED IMAGE TO FIREBASE
-                    uploadImageToFirebaseStrorage()
                 }
 
                 .addOnFailureListener {
@@ -110,7 +127,7 @@ class RegisterActivity : AppCompatActivity() {
         val radio : RadioButton = findViewById(GendeRradioGrp.checkedRadioButtonId)
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val user=User(uid, register_userName.text.toString(), profileImageUrl,register_DOB.text.toString(),register_email.text.toString(),"${radio.text}",register_bio.text.toString())
+        val user=User(uid, register_userName.text.toString(), profileImageUrl,register_email.text.toString(),"${radio.text}",register_bio.text.toString())
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "Saved user Data to Firebase")
@@ -147,6 +164,6 @@ class RegisterActivity : AppCompatActivity() {
 }
 
 //CREATING A USER CLASS TO IDENTIFY WHAT TO STORE IN THE DATABASE
-class User(val uid:String, val username:String, val profileImageUrl: String, val DOB:String, val email:String, val gender:String, val bio:String){
-    constructor() : this("","","","","","","")
+class User(val uid:String, val username:String, val profileImageUrl: String, val email:String, val gender:String, val bio:String){
+    constructor() : this("","","","","","")
 }

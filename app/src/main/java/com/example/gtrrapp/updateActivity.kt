@@ -37,9 +37,23 @@ class UpdateActivity:AppCompatActivity(){
 
         //ACTION FOR THE Update BUTTON
         updateBtn.setOnClickListener {
-            uploadImageToFirebaseStrorage()
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            val bio = user_bio.text.toString()
+            val username = update_userName.text.toString()
+
+            if( bio.isEmpty() || username.isEmpty()){
+                Toast.makeText(this,"Please Enter Your Desired Bio and User Name",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (selectedPhotoUri == null){
+                Toast.makeText(this, "Please Select a New Profile Image", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }else {
+                uploadImageToFirebaseStrorage()
+                Toast.makeText(this, "Successfully Updated Your Account Details", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
@@ -78,10 +92,9 @@ class UpdateActivity:AppCompatActivity(){
 
         ref.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(data: DataSnapshot) {
-                val dob = data.child("dob").value as String
                 val gender = data.child("gender").value as String
                 val email = data.child("email").value as String
-                val user=User(uid, update_userName.text.toString() , profileImageUrl, dob, email, gender, user_bio.text.toString())
+                val user=User(uid, update_userName.text.toString() , profileImageUrl, email, gender, user_bio.text.toString())
                 ref.setValue(user)
             }
             override fun onCancelled(error: DatabaseError) {

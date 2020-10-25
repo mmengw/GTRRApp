@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="130dp"
-            android:text="Recycle Title" />
+            android:text="Recycle Title"
+            android:textColor="#B3000000"/>
 
         <EditText
             android:id="@+id/recycleTitle"
@@ -41,7 +42,8 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="30dp"
             android:layout_below="@+id/recycleTitle"
-            android:text="Recycle Description" />
+            android:text="Recycle Description"
+            android:textColor="#B3000000"/>
 
         <EditText
             android:id="@+id/recycleDescription"
@@ -64,7 +66,8 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="30dp"
             android:layout_below="@+id/recycleDescription"
-            android:text="Recycle Material Type" />
+            android:text="Recycle Material Type"
+            android:textColor="#B3000000"/>
 
         <Spinner
             android:id="@+id/RecycleType"
@@ -94,7 +97,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_corner_button"
-            android:text="Update"
+            android:text="UPLOAD"
             android:textStyle="bold" />
 
 

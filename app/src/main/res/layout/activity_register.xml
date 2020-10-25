@@ -29,7 +29,7 @@
             android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:text="SELECT PHOTO" />
+            android:text="SELECT PROFILE IMAGE" />
 
         <TextView
             android:id="@+id/Name"
@@ -38,7 +38,8 @@
             android:layout_below="@+id/register_photobtn"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="36dp"
-            android:text="UserName" />
+            android:text="UserName"
+            android:textColor="#B3000000"/>
 
         <EditText
             android:id="@+id/register_userName"
@@ -61,7 +62,8 @@
             android:layout_below="@+id/register_userName"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="36dp"
-            android:text="Gender" />
+            android:text="Gender"
+            android:textColor="#B3000000"/>
 
         <RadioGroup
             android:id="@+id/GendeRradioGrp"
@@ -88,33 +90,14 @@
         </RadioGroup>
 
         <TextView
-            android:id="@+id/DOBTV"
+            android:id="@+id/Email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/GendeRradioGrp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="36dp"
-            android:text="Date of Birth" />
-
-        <EditText
-            android:id="@+id/register_DOB"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_below="@+id/DOBTV"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="10dp"
-            android:paddingHorizontal="3dp"
-            android:hint="dd/mm/yyyy"
-            android:inputType="date"/>
-
-        <TextView
-            android:id="@+id/Email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/register_DOB"
-            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
-            android:text="Email" />
+            android:text="Email"
+            android:textColor="#B3000000"/>
 
         <EditText
             android:id="@+id/register_email"
@@ -137,7 +120,8 @@
             android:layout_below="@+id/register_email"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="36dp"
-            android:text="Password" />
+            android:text="Password"
+            android:textColor="#B3000000"/>
 
         <EditText
             android:id="@+id/gtrrPassword"

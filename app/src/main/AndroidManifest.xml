@@ -41,7 +41,7 @@
             android:windowSoftInputMode="adjustResize">
         </activity>
         <activity android:name=".RecycleGuideActivity"
-            android:label="Recycle Guide">
+            android:label="Recycle Guide Search">
         </activity>
 
         <!--ADMIN ACTIVITY-->
@@ -58,7 +58,8 @@
         <activity android:name=".admin.AdminLoginActivity"
             android:windowSoftInputMode="adjustResize">
         </activity>
-        <activity android:name=".admin.AdminAnalytics">
+        <activity android:name=".admin.AdminAnalytics"
+            android:label="Admin">
         </activity>
 
         <!--FACTS ACTIVITY-->

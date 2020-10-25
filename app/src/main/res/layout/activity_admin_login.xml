@@ -69,7 +69,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="130dp"
             android:background="@drawable/rounded_corner_button"
-            android:text="Log In"/>
+            android:text="Login"/>
 
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

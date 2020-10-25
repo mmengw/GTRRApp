@@ -21,7 +21,7 @@ class AdminLoginActivity : AppCompatActivity(){
 
             //IF EMAIL OR PASSWORD COLUMN IS EMPTY
             if (email.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(this, "Please enter text in Email or Password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please Enter Email and Password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             //IF EMAIL IS THE ADMIN EMAIL

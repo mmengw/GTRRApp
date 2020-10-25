@@ -38,7 +38,6 @@ class UserFragment : Fragment() {
     private var username: TextView? = null
     private var email: TextView? = null
     private var gender : TextView? = null
-    private var DOB: TextView? = null
     private var bio: TextView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,7 +60,6 @@ class UserFragment : Fragment() {
         username = view!!.findViewById(R.id.Display_Username) as TextView
         email = view!!.findViewById(R.id.Display_email) as TextView
         gender = view!!.findViewById(R.id.Display_gender) as TextView
-        DOB = view!!.findViewById(R.id.Display_dob) as TextView
         bio = view!!.findViewById(R.id.Display_bio) as TextView
     }
 
@@ -78,7 +76,6 @@ class UserFragment : Fragment() {
                 username!!.text = snapshot.child("username").value as String
                 email!!.text = snapshot.child("email").value as String
                 gender!!. text = snapshot.child("gender").value as String
-                DOB!!. text = snapshot.child("dob").value as String
                 bio!!.text = snapshot.child("bio").value as String
 
                 val image = snapshot.child("profileImageUrl")?.value!!.toString()
@@ -95,6 +92,7 @@ class UserFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        viewOfLayout = inflater!!.inflate(R.layout.fragment_user, container, false)
         viewOfLayout = inflater!!.inflate(R.layout.fragment_user, container, false)
         return viewOfLayout
 
