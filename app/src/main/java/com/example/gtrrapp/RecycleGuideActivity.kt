@@ -16,12 +16,14 @@ import android.text.method.LinkMovementMethod
 import android.text.method.MovementMethod
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gtrr.fragments.NewsItem
 import com.google.gson.Gson
 import edmt.dev.edmtdevcognitivevision.Contract.AnalysisResult
 import edmt.dev.edmtdevcognitivevision.VisionServiceRestClient
 import kotlinx.android.synthetic.main.activity_recycle_guide.*
+import kotlinx.android.synthetic.main.fragment_achievements.*
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -53,7 +55,7 @@ class RecycleGuideActivity:AppCompatActivity() {
 
         option = findViewById(R.id.MaterialType) as Spinner
 
-        val options = arrayOf("plastic","Glass","Metal","Paper","Wood","Oil")
+        val options = arrayOf("Plastic","Glass","Metal","Paper","Wood","Oil")
         option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
 
         option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -84,6 +86,17 @@ class RecycleGuideActivity:AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK){
             when(requestCode){
                 IMAGE_PICK_CODE ->{
+
+                    //DIALOG WARNING BUILDER
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Rotate the image to have it facing up right to have a more accurate reading")
+                    builder.setPositiveButton("OK"){dialog, id ->
+                            dialog.dismiss()
+                        }
+                    //SHOW THE DIALOG AND ONCE DONE RETURN TO THE HOME PAGE
+                    builder.show()
+
+                    //SET SELECTED BITMAP IMAGE INTO THE IMAGE VIEW
                     val bitmap = getImageFromData(data)
                     val resizeBitmap = Bitmap.createScaledBitmap(bitmap!!,640,481,false)
                     bitmap?.apply{
@@ -91,8 +104,9 @@ class RecycleGuideActivity:AppCompatActivity() {
                         val outputStream = ByteArrayOutputStream()
                         bitmap?.compress(Bitmap.CompressFormat.JPEG,50,outputStream)
                         val inputStream = ByteArrayInputStream(outputStream.toByteArray())
-                        if (bitmap != null){
 
+                        //ROATE BUTTON FUNCTION
+                        if (bitmap != null){
                             rotatebtn.setOnClickListener{
                                 if(seekBar.progress > 360) {
                                     seekBar.progress = 360
@@ -120,7 +134,7 @@ class RecycleGuideActivity:AppCompatActivity() {
                                     }
                                 })
 
-
+                            //IMAGE RECOGNITION FUNCTION
                             val onClickListener: Any = analysebtn.setOnClickListener {
                                 val visionTask = @SuppressLint("StaticFieldLeak")
                                 object : AsyncTask<InputStream, String, String>() {
@@ -192,7 +206,7 @@ class RecycleGuideActivity:AppCompatActivity() {
             action = Intent.ACTION_PICK
             type = "image/*"
         }
-        startActivityForResult(Intent.createChooser(intent, "'Select Image"),IMAGE_PICK_CODE)
+        startActivityForResult(Intent.createChooser(intent, "Select Image"),IMAGE_PICK_CODE)
     }
 }
 

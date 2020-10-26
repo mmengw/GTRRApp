@@ -38,7 +38,7 @@ class AddNewRecycleLogActivity : AppCompatActivity(){
         updateButton = findViewById(R.id.updateBtn)
         result = findViewById(R.id.resultType)
 
-        val options = arrayOf("plastic","Glass","Metal","Paper","Wood","Oil")
+        val options = arrayOf("Plastic","Glass","Metal","Paper","Wood","Oil")
 
         option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
 
