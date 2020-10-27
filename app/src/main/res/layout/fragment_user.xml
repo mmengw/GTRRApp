@@ -8,7 +8,7 @@
         android:id="@+id/ib_profile_pic"
         android:layout_width="268dp"
         android:layout_height="258dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop" />
     <TableLayout
