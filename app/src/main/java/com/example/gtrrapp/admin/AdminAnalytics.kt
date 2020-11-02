@@ -86,6 +86,10 @@ class AdminAnalytics : AppCompatActivity (){
                 val intent = Intent (this, AdminHomeActivity::class.java)
                 startActivity(intent)
             }
+            R.id.menu_UserDel ->{
+                val intent = Intent (this, AdminUserManagement::class.java)
+                startActivity(intent)
+            }
             R.id.menu_Analytics ->{
                 val intent = Intent (this, AdminAnalytics::class.java)
                 startActivity(intent)

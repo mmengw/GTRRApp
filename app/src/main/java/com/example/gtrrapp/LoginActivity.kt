@@ -23,7 +23,6 @@ class LoginActivity: AppCompatActivity(){
                 Toast.makeText(this, "Please Enter Your Email and Password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
             //DISPLAY ACTION IN LOGCAT
             Log.d("LoginActivity","Attempt login with email/pw: $email/***")
 
@@ -32,12 +31,12 @@ class LoginActivity: AppCompatActivity(){
                 .addOnCompleteListener{
                     //IF LOGIN FAILED
                     if(!it.isSuccessful)
-                        Toast.makeText(this, "Failed to Login Please try Again", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "Failed to Login Please try Again", Toast.LENGTH_SHORT).show()
                     if(!it.isSuccessful) return@addOnCompleteListener
 
                     //ELSE IF LOGIN SUCCESSFUL
                     Log.d("LoginActivity", "Successfully Login")
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                     //CLEAR OFF ALL THE PREVIOUS ACTIVITY STACK SO THAT IT WONT BRING THE USER BACK TO THE REGISTER SCREEN
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)

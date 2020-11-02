@@ -9,41 +9,39 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gtrrapp.MainActivity
 import com.example.gtrrapp.R
+import com.example.gtrrapp.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_admin_home.*
-import kotlinx.android.synthetic.main.admin_delete_news_cardview.view.*
+import kotlinx.android.synthetic.main.activity_admin_user_management.*
+import kotlinx.android.synthetic.main.admin_delete_user_cardview.view.*
 
-class AdminHomeActivity: AppCompatActivity() {
+class AdminUserManagement : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admin_home)
+        setContentView(R.layout.activity_admin_user_management)
 
         //RECYCLERVIEW LAYOUT
-        recyclerview_adminFeed.layoutManager= LinearLayoutManager(this)
-        recyclerview_adminFeed.setHasFixedSize(true)
+        recyclerview_manageUser.layoutManager= LinearLayoutManager(this)
+        recyclerview_manageUser.setHasFixedSize(true)
 
-        fetchNews()
-
-        //ADD NEWS BUTTON ACTIVITY
-        admin_addNews.setOnClickListener {
-            val intent = Intent(this, AdminAddNews::class.java)
-            startActivity(intent)
-        }
+        fetchUsers()
     }
 
     //FETCHING NEWS FROM THE FIREBASE DATABASE
-    private fun fetchNews(){
-        val ref= FirebaseDatabase.getInstance().getReference("/News")
+    private fun fetchUsers(){
+        val recId= FirebaseDatabase.getInstance().getReference("/RecycleLog")
+        val ref= FirebaseDatabase.getInstance().getReference("/users")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(data: DataSnapshot){
@@ -51,25 +49,26 @@ class AdminHomeActivity: AppCompatActivity() {
                 //FUNCTION TO FETCH ALL THE DATA AVAILABLE FOR THE NEWS IN FIREBASE DATABASE
                 val adapter = GroupAdapter<ViewHolder>()
                 data.children.forEach{
-                    val news = it.getValue(News::class.java)
-                    if (news != null){
-                        adapter.add(AdminItems(news))
+                    val userdata = it.getValue(User::class.java)
+                    if (userdata != null){
+                        adapter.add(adminUM(userdata))
                     }
                 }
 
                 //FUNCTION FOR DELETING EACH NEWS DATA WHILE LONG PRESS ON THE CARDVIEW
                 adapter.setOnItemLongClickListener(){item, view ->
-                    val adminItems = item as AdminItems
+                    val adminUserManItem = item as adminUM
 
                     //SHOW ALERT DIALOG WHEN LONG PRESS ON THE CARDVIEW
-                    val builder = AlertDialog.Builder(this@AdminHomeActivity)
-                    builder.setTitle("Are You Sure You Want To Delete This News?")
+                    val builder = AlertDialog.Builder(this@AdminUserManagement)
+                    builder.setTitle("Are You Sure You Want To Delete This User Account?")
 
                     //IF YES WAS SELECTED ON THE DIALOG ALERT
                     builder.setPositiveButton(android.R.string.yes){dialog, id ->
-                        val newsID = adminItems.adminNews.newsid
-                        ref.child("$newsID").removeValue()
-                        val intent = Intent(this@AdminHomeActivity, AdminHomeActivity::class.java)
+                        val userID = adminUserManItem.users.uid
+                        ref.child("$userID").removeValue()
+                        recId.child("$userID").removeValue()
+                        val intent = Intent(this@AdminUserManagement, AdminUserManagement::class.java)
                         finish()
                         startActivity(intent)
                     }
@@ -84,7 +83,7 @@ class AdminHomeActivity: AppCompatActivity() {
                     return@setOnItemLongClickListener true
 
                 }
-                recyclerview_adminFeed.adapter = adapter
+                recyclerview_manageUser.adapter = adapter
             }
             override fun onCancelled (error: DatabaseError){
 
@@ -111,7 +110,7 @@ class AdminHomeActivity: AppCompatActivity() {
             R.id.menu_LogOut ->{
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent (this, MainActivity::class.java)
-                intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.flags= Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
         }
@@ -127,14 +126,15 @@ class AdminHomeActivity: AppCompatActivity() {
 }
 
 //ALLOCATING NEWS DATA VALUE TO ITS CORRESPONDING ITEMVIEW
-class AdminItems(val adminNews: News): Item<ViewHolder>(){
+class adminUM(val users: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.admin_title.text = adminNews.ntitle
-        Picasso.get().load(adminNews.coverImgUrl).into(viewHolder.itemView.admin_imageView)
+        viewHolder.itemView.userName.text = users.username
+        viewHolder.itemView.userEmail.text = users.email
+        Picasso.get().load(users.profileImageUrl).into(viewHolder.itemView.admin_UserManimageView)
     }
 
     override fun getLayout(): Int {
-        return R.layout.admin_delete_news_cardview
+        return R.layout.admin_delete_user_cardview
     }
 
 }

@@ -71,32 +71,33 @@ class RegisterActivity : AppCompatActivity() {
             if (selectedPhotoUri == null){
                 Toast.makeText(this, "Please Select a Profile Image", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
-            }else {
-                uploadImageToFirebaseStrorage()
             }
 
-            Log.d("RegisterActivity", "Email is:" + email)
-            Log.d("RegisterActivity", "Password: $pass")
+                Log.d("RegisterActivity", "Email is:" + email)
+                Log.d("RegisterActivity", "Password: $pass")
 
-            //FIREBASE AUTHENTICATION FOR CREATING NEW USERS
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pass)
+                //FIREBASE AUTHENTICATION FOR CREATING NEW USERS
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pass)
 
-                .addOnCompleteListener {
-                    //IF NOT SUCCESSFUL
-                    if(!it.isSuccessful)
-                        Toast.makeText(this, "Failed to register Please try Again", Toast.LENGTH_LONG).show()
-                    if (!it.isSuccessful) return@addOnCompleteListener
+                    .addOnCompleteListener {
+                        //IF NOT SUCCESSFUL
+                        if (!it.isSuccessful)
+                            Toast.makeText(this, "Failed to register Please try Again",Toast.LENGTH_LONG).show()
+                        if (!it.isSuccessful)
+                            return@addOnCompleteListener
 
-                    //ELSE IF SUCCESSFUL
-                    Log.d("RegisterActivity", "Successfully created user with uid: ${it?.result?.user?.uid}")
-                    Toast.makeText(this, "Successfully Registered a New User Account", Toast.LENGTH_SHORT).show()
-                }
+                        //ELSE IF SUCCESSFUL
+                        uploadImageToFirebaseStrorage()
+                        Log.d("RegisterActivity", "Successfully created user with uid: ${it?.result?.user?.uid}")
+                        Toast.makeText(this, "Successfully Registered a New User Account", Toast.LENGTH_SHORT).show()
 
-                .addOnFailureListener {
-                    //DISPLAY ACTION IN LOGCAT
-                    Log.d("RegisterActivity", "Failed to create user: ${it.message}")
-                    Toast.makeText(this, "Failed to create user ${it.message}", Toast.LENGTH_SHORT).show()
-                }
+                    }
+
+                    .addOnFailureListener {
+                        //DISPLAY ACTION IN LOGCAT
+                        Log.d("RegisterActivity", "Failed to create user: ${it.message}")
+                        Toast.makeText(this, "Failed to create user ${it.message}", Toast.LENGTH_SHORT).show()
+                    }
         }
     }
 

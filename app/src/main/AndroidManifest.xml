@@ -46,6 +46,9 @@
 
         <!--ADMIN ACTIVITY-->
         <activity android:name=".admin.AdminHomeActivity"
+        android:label="Admin">
+    </activity>
+        <activity android:name=".admin.AdminUserManagement"
             android:label="Admin">
         </activity>
         <activity android:name=".admin.AdminAddNews"
