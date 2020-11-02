@@ -20,6 +20,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_admin_home.*
 import kotlinx.android.synthetic.main.admin_delete_news_cardview.view.*
+import kotlinx.android.synthetic.main.fragment_news_feed.*
 
 class AdminHomeActivity: AppCompatActivity() {
 
@@ -29,8 +30,13 @@ class AdminHomeActivity: AppCompatActivity() {
         setContentView(R.layout.activity_admin_home)
 
         //RECYCLERVIEW LAYOUT
-        recyclerview_adminFeed.layoutManager= LinearLayoutManager(this)
-        recyclerview_adminFeed.setHasFixedSize(true)
+        val recyclerVad = LinearLayoutManager(this)
+        recyclerVad.stackFromEnd = true
+        recyclerVad.reverseLayout = true
+        recyclerview_adminFeed.layoutManager = recyclerVad
+
+//        recyclerview_adminFeed.layoutManager= LinearLayoutManager(this)
+//        recyclerview_adminFeed.setHasFixedSize(true)
 
         fetchNews()
 

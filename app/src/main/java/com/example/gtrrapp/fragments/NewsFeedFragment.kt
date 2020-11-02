@@ -38,8 +38,13 @@ open class newsFeedFragment : Fragment() {
         }
 
         //RECYCLERVIEW FUNCTION
-        recyclerview_newsfeed.layoutManager=LinearLayoutManager(this.context)
-        recyclerview_newsfeed.setHasFixedSize(true)
+        val recyclerV = LinearLayoutManager(this.context)
+        recyclerV.stackFromEnd = true
+        recyclerV.reverseLayout = true
+        recyclerview_newsfeed.layoutManager = recyclerV
+
+//        recyclerview_newsfeed.layoutManager=LinearLayoutManager(this.context)
+//        recyclerview_newsfeed.setHasFixedSize(true)
 
         fetchNews()
 
