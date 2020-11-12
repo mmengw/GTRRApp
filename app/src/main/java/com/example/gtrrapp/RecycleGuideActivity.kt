@@ -34,8 +34,8 @@ import java.util.Collections.rotate
 class RecycleGuideActivity:AppCompatActivity() {
 
     companion object{
-        val API_KEY="e5a0a35d72d342dc9d5fb0a8745b38fc"
-        val API_LINK="https://gtrr.cognitiveservices.azure.com/vision/v1.0"
+        val API_KEY="d14f8b0ed53d4f928addc6ec347e6ebd"
+        val API_LINK="https://ra.cognitiveservices.azure.com/vision/v1.0"
         private var IMAGE_PICK_CODE = 180
     }
 
